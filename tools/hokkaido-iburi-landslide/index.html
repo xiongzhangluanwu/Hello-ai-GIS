@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>北海道胆振东部地震 · 地震滑坡解构工具（教学版）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  html, body { height: 100%; margin: 0; font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  #map { position: absolute; top: 0; bottom: 0; right: 0; left: 340px; }
+  #titlebar {
+    position: absolute; top: 0; left: 0; right: 0; height: 46px; z-index: 1000;
+    background: #263238; color: #fff; display: flex; align-items: center; padding: 0 14px;
+    font-size: 15px; font-weight: bold; box-shadow: 0 1px 4px rgba(0,0,0,.4);
+  }
+  #titlebar small { font-weight: normal; opacity: .75; margin-left: 10px; font-size: 12px; }
+  #panel {
+    position: absolute; top: 46px; bottom: 0; left: 0; width: 340px; z-index: 999;
+    background: #fafafa; box-shadow: 1px 0 4px rgba(0,0,0,.25); overflow-y: auto; padding: 10px 12px; box-sizing: border-box;
+  }
+  .tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+  .tabs button { flex: 1; padding: 8px 0; border: none; border-radius: 6px; cursor: pointer; background: #e0e0e0; font-size: 14px; }
+  .tabs button.active { background: #2e7d32; color: #fff; }
+  .hidden { display: none !important; }
+  .factor-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .factor-btns button {
+    padding: 12px 4px; border: none; border-radius: 8px; cursor: pointer; font-size: 14px;
+    background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); color: #333;
+  }
+  .factor-btns button.active { background: #1565c0; color: #fff; }
+  #factor-card { background: #fff; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.15); font-size: 13.5px; line-height: 1.75; }
+  #factor-card h3 { margin: 0 0 8px; font-size: 15px; color: #1565c0; }
+  #factor-card .q { background: #fff8e1; border-left: 4px solid #ffb300; padding: 8px 10px; border-radius: 4px; margin-top: 10px; }
+  #factor-card .q b { color: #e65100; }
+  #tab-tasks ol { padding-left: 20px; font-size: 13.5px; line-height: 1.8; }
+  #tab-tasks details { margin: 6px 0 12px; font-size: 13px; }
+  #tab-tasks summary { cursor: pointer; color: #1565c0; }
+  #tab-about { font-size: 13px; line-height: 1.8; }
+  #tab-about .warn { background: #ffebee; border-left: 4px solid #c62828; padding: 8px 10px; border-radius: 4px; }
+  .measure-btn {
+    width: 34px; height: 34px; background: #fff; border-radius: 4px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 17px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.4); margin: 10px 0 0 10px; user-select: none;
+  }
+  .measure-btn.on { background: #1565c0; color: #fff; }
+  #measure-status {
+    position: absolute; bottom: 18px; left: 352px; z-index: 1000; background: rgba(38,50,56,.92);
+    color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 13px; display: none;
+  }
+  #legend {
+    position: absolute; bottom: 18px; right: 12px; z-index: 1000; background: rgba(255,255,255,.94);
+    padding: 10px 12px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.3); font-size: 12px; line-height: 1.7;
+    max-height: 46%; overflow-y: auto;
+  }
+  .leaflet-container { font: inherit; }
+  @media (max-width: 720px) {
+    #panel { width: 100%; right: 0; height: 45%; top: auto; }
+    #map { left: 0; top: 46px; bottom: 45%; }
+  }
+</style>
+</head>
+<body>
+<div id="titlebar">北海道胆振东部地震（札幌近郊）· 地震滑坡解构工具<small>Hello-ai-GIS 教学工具 v0.1 ｜ 真实图层：国土地理院 / USGS / GitHub</small></div>
+
+<div id="panel">
+  <div class="tabs">
+    <button data-tab="factors" class="active">四要素</button>
+    <button data-tab="tasks">探究任务</button>
+    <button data-tab="about">关于</button>
+  </div>
+
+  <div id="tab-factors" class="tab-content">
+    <div class="factor-btns">
+      <button data-factor="quake">① 地震动</button>
+      <button data-factor="rain">② 前期降雨</button>
+      <button data-factor="geo">③ 火山灰地质</button>
+      <button data-factor="form">④ 地形与形态</button>
+    </div>
+    <div id="factor-card"><p style="color:#777">点击上方按钮，解构这场<b>地震诱发</b>滑坡的四个成因要素，并与舟曲案例对比。</p></div>
+  </div>
+
+  <div id="tab-tasks" class="tab-content hidden">
+    <ol>
+      <li><b>比一比</b>：不同机构圈定的滑坡数量差别很大——国土地理院 3307 处、喜多耕一 6116 处崩壊 + 1512 处堆积、Planet 影像解译 7941 处、航片解译 10120 处。为什么？</li>
+      <details><summary>思路提示</summary>影像分辨率不同（0.5 m 航片 vs 3.7 m 卫星）、判读标准不同（是否合并连片小滑坡、是否计入堆积区）、云遮挡与植被覆盖差异。科学数据也有"不确定性"，这正是需要让学生理解的一点。</details>
+      <li><b>测一测</b>：量一量震中到厚真町吉野地区的直线距离；再把 PGA≥0.5g 等值线与红色崩壊图层叠加，看看滑坡密集区落在什么位置。</li>
+      <details><summary>参考答案</summary>震中距厚真町约 27 km（注意：震害最重的并不是震中最近处，而是厚层火山灰覆盖的丘陵区）；滑坡高密度区大致与 PGA≥0.5g 范围吻合，但更关键的是"强震动 × 火山灰地质"的叠加。</details>
+      <li><b>找一找</b>：把底图切换为「震后正射影像（9月6日）」，在厚真町附近找发亮的崩壊裸地和土砂堆积；点击棕色堆积多边形，看看它压埋了森林、道路还是房屋。</li>
+      <li><b>想一想</b>：舟曲泥石流是"暴雨扣扳机"，北海道滑坡是"地震扣扳机"。两者的共同前提是什么？这对"防灾该防什么"有什么启示？</li>
+      <details><summary>思路提示</summary>共同前提：松散物质 + 陡坡 + 水（孔隙水压力）。启示：既要监测触发因子（暴雨、地震），更要提前识别"装填好的弹药库"——易发区划与土地利用管制。</details>
+    </ol>
+  </div>
+
+  <div id="tab-about" class="tab-content hidden">
+    <p><b>这是什么？</b></p>
+    <p>Hello-ai-GIS 第二个教学工具：用<b>真实数据图层</b>解构 2018 年 9 月 6 日北海道胆振东部地震（Mw 6.6，札幌东南约 40 km）诱发的山体滑坡。与舟曲工具配合使用，对比"暴雨型"与"地震型"地质灾害。</p>
+    <p class="warn">⚠️ 喜多耕一的数据为<b>个人基于地理院航空影像的判读</b>，非官方成果；国土地理院分布图未经现场踏查。所有数据仅用于课堂教学。</p>
+    <p><b>图层来源</b>：<br/>· 国土地理院：标准/淡色地图、赤色立体地图、震后正射影像、斜面崩壊・堆積分布図<br/>· GitHub koukita/2018_09_06_atumatyou：崩壊 6116 处 / 堆积 1512 处矢量<br/>· USGS：震中、PGA/MMI 等值线、余震序列</p>
+    <p><b>使用条件</b>：需联网加载；推荐 Chrome / Edge。</p>
+    <p><b>开源</b>：MIT License。</p>
+  </div>
+</div>
+
+<div id="map"></div>
+<div id="measure-status"></div>
+
+<div id="legend">
+  <b>图例与状态</b><br/>
+  <span style="color:#e53935">▨</span> 斜面崩壊（喜多，<span id="st-sanpuku">加载中…</span>）<br/>
+  <span style="color:#8d6e63">▨</span> 土砂堆积（喜多，<span id="st-taiseki">加载中…</span>）<br/>
+  <span style="color:#ff9800">▨</span> 崩壊・堆積分布図（国土地理院）<br/>
+  <span style="color:#a5e1ff">—</span> PGA 等值线（%g）　<span style="color:#90f2ff">—</span> MMI 等值线<br/>
+  ○ 余震 M≥3.5　<span style="font-size:15px;color:#d32f2f">★</span> 震中　● 主要地点
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+/* ================= 基础地图 ================= */
+var CENTER = [42.72, 141.80];
+var map = L.map('map', { center: CENTER, zoom: 11, minZoom: 8, maxZoom: 18 });
+
+var gsiStd  = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png',  { attribution: '国土地理院', maxZoom: 18 });
+var gsiPale = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png', { attribution: '国土地理院', maxZoom: 18 });
+var sekishoku = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/20180906hokkaido_atsuma_sekishoku/{z}/{x}/{y}.png', { attribution: '国土地理院（赤色立体地図）', minZoom: 6, maxZoom: 16, maxNativeZoom: 16 });
+var ortho0906 = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/20180906hokkaido_atsumachiku_0906do/{z}/{x}/{y}.png', { attribution: '国土地理院（正射影像 9/6 厚真地区）', minZoom: 10, maxZoom: 18 });
+var ortho0911 = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/20180906hokkaido_abira_0911do/{z}/{x}/{y}.png', { attribution: '国土地理院（正射影像 9/11 安平）', minZoom: 10, maxZoom: 18 });
+gsiStd.addTo(map);
+
+var baseMaps = {
+  '标准地图（地理院）': gsiStd,
+  '淡色地图（地理院）': gsiPale,
+  '赤色立体地図（厚真町）': sekishoku,
+  '震后正射影像 9/6（厚真）': ortho0906,
+  '震后正射影像 9/11（安平）': ortho0911
+};
+
+/* ================= 叠加图层（真实数据） ================= */
+var hokaichi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/20180906hokkaido_iburi_hokaichi/{z}/{x}/{y}.png', {
+  attribution: '国土地理院：斜面崩壊・堆積分布図', minZoom: 6, maxZoom: 16, opacity: 0.85
+});
+
+var canvasRenderer = L.canvas({ padding: 0.5 });
+
+function sanpukuStyle() {
+  return { renderer: canvasRenderer, color: '#b71c1c', weight: 0.5, fillColor: '#e53935', fillOpacity: 0.45 };
+}
+function taisekiStyle() {
+  return { renderer: canvasRenderer, color: '#5d4037', weight: 0.5, fillColor: '#8d6e63', fillOpacity: 0.5 };
+}
+function taisekiPopup(f, layer) {
+  var p = f.properties || {};
+  var hit = [];
+  if (p['家屋']) hit.push('房屋');
+  if (p['道路']) hit.push('道路');
+  if (p['畑'])   hit.push('农田');
+  if (p['森林']) hit.push('森林');
+  if (p['ダム'] || p['土砂ダム']) hit.push('形成堰塞');
+  layer.bindPopup('<b>土砂堆积</b><br/>' + (hit.length ? '压埋对象：' + hit.join('、') : '未记录压埋对象') +
+    '<br/><span style="color:#888;font-size:12px">来源：' + (p['出典'] || '') + '</span>');
+}
+
+var sanpukuLyr = L.geoJSON(null, { style: sanpukuStyle }).addTo(map);
+var taisekiLyr = L.geoJSON(null, { style: taisekiStyle, onEachFeature: taisekiPopup });
+
+/* 带超时的备用链加载（jsDelivr → raw.githubusercontent） */
+function fetchWithFallback(urls, timeoutMs) {
+  var i = 0;
+  function attempt() {
+    if (i >= urls.length) return Promise.reject(new Error('all sources failed'));
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, timeoutMs || 25000);
+    return fetch(urls[i++], { signal: ctrl.signal })
+      .then(function (r) { clearTimeout(timer); if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+      .catch(function () { clearTimeout(timer); return attempt(); });
+  }
+  return attempt();
+}
+
+var REPO = 'koukita/2018_09_06_atumatyou/master/docs/Geojson/';
+fetchWithFallback([
+  'https://cdn.jsdelivr.net/gh/' + REPO + 'iburitoubu_sanpuku.geojson',
+  'https://raw.githubusercontent.com/' + REPO + 'iburitoubu_sanpuku.geojson'
+]).then(function (gj) {
+  sanpukuLyr.addData(gj);
+  document.getElementById('st-sanpuku').textContent = gj.features.length + ' 处 ✓';
+}).catch(function () {
+  document.getElementById('st-sanpuku').textContent = '加载失败 ✗';
+});
+fetchWithFallback([
+  'https://cdn.jsdelivr.net/gh/' + REPO + 'iburitoubu_taiseki.geojson',
+  'https://raw.githubusercontent.com/' + REPO + 'iburitoubu_taiseki.geojson'
+]).then(function (gj) {
+  taisekiLyr.addData(gj);
+  document.getElementById('st-taiseki').textContent = gj.features.length + ' 处 ✓';
+}).catch(function () {
+  document.getElementById('st-taiseki').textContent = '加载失败 ✗';
+});
+
+/* USGS ShakeMap 等值线（PGA / MMI） */
+var pgaLyr = L.geoJSON(null, {
+  style: function (f) { return { color: f.properties.color || '#2196f3', weight: 2, opacity: .9, dashArray: '2 3' }; },
+  onEachFeature: function (f, l) {
+    l.bindTooltip('PGA ≥ ' + f.properties.value + '%g', { sticky: true });
+  }
+});
+var mmiLyr = L.geoJSON(null, {
+  style: function (f) { return { color: f.properties.color || '#00bcd4', weight: 2, opacity: .8 }; },
+  onEachFeature: function (f, l) {
+    l.bindTooltip('MMI ' + f.properties.value, { sticky: true });
+  }
+});
+fetch('https://earthquake.usgs.gov/product/shakemap/us2000h8ty/atlas/1594401324136/download/cont_pga.json')
+  .then(function (r) { return r.json(); }).then(function (gj) { pgaLyr.addData(gj); }).catch(function () {});
+fetch('https://earthquake.usgs.gov/product/shakemap/us2000h8ty/atlas/1594401324136/download/cont_mmi.json')
+  .then(function (r) { return r.json(); }).then(function (gj) { mmiLyr.addData(gj); }).catch(function () {});
+
+/* 余震（USGS 地震目录实时查询） */
+var afLyr = L.layerGroup();
+fetch('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-09-06T03:00:00&endtime=2018-09-13T00:00:00&latitude=42.686&longitude=141.929&maxradiuskm=80&minmagnitude=3.5')
+  .then(function (r) { return r.json(); }).then(function (gj) {
+    gj.features.forEach(function (f) {
+      var c = f.geometry.coordinates;
+      var m = f.properties.mag || 4;
+      var isMain = m >= 6;
+      L.circleMarker([c[1], c[0]], {
+        radius: isMain ? 10 : (m - 3.5) * 3 + 2,
+        color: isMain ? '#d32f2f' : '#fb8c00', weight: isMain ? 3 : 1,
+        fillColor: isMain ? '#d32f2f' : '#ffb74d', fillOpacity: isMain ? 0.9 : 0.5
+      }).bindPopup('<b>M' + m.toFixed(1) + '</b>　深度 ' + c[2].toFixed(0) + ' km<br/>' +
+        new Date(f.properties.time).toLocaleString('zh-CN')).addTo(afLyr);
+    });
+  }).catch(function () {});
+
+/* ================= 震中与标注点 ================= */
+var epicenter = L.marker([42.686, 141.929], {
+  icon: L.divIcon({ html: '<div style="font-size:22px;color:#d32f2f;text-shadow:0 0 3px #fff">★</div>', iconSize: [26, 26], iconAnchor: [13, 13] })
+}).bindPopup('<b>震中（USGS）</b><br/>Mw 6.6　深度约 35 km<br/>2018-09-06 03:07（日本时间）');
+
+var poi = L.layerGroup([
+  L.circleMarker([42.738, 141.772], { radius: 7, color: '#880e4f', fillColor: '#c2185b', fillOpacity: .9 })
+    .bindPopup('<b>厚真町 吉野地区・富里</b><br/>最大震度 7（北海道观测史上首次）<br/>富里连片滑坡造成 36 人遇难'),
+  L.circleMarker([42.634, 141.605], { radius: 6, color: '#37474f', fillColor: '#78909c', fillOpacity: .9 })
+    .bindPopup('<b>苫小牧市</b><br/>震度 6 弱；苫东厚真发电厂受损导致北海道全域停电'),
+  L.circleMarker([42.997, 141.454], { radius: 6, color: '#37474f', fillColor: '#78909c', fillOpacity: .9 })
+    .bindPopup('<b>札幌市清田区</b><br/>震度 6 弱；发生大面积<b>土壤液化</b>（火山灰地层）'),
+  L.circleMarker([42.775, 141.692], { radius: 6, color: '#37474f', fillColor: '#78909c', fillOpacity: .9 })
+    .bindPopup('<b>新千岁机场</b><br/>跑道受损，北海道对外交通中断数日'),
+  L.circleMarker([42.688, 141.377], { radius: 7, color: '#6a1b9a', fillColor: '#ab47bc', fillOpacity: .9 })
+    .bindPopup('<b>樽前山（活火山）</b><br/>周边广泛分布厚层火山灰与浮石层——本次滑坡特殊的地质背景')
+]).addTo(map);
+epicenter.addTo(map);
+
+var overlayMaps = {
+  '国土地理院：崩壊・堆積分布図': hokaichi,
+  '斜面崩壊 6116 处（GitHub）': sanpukuLyr,
+  '土砂堆积 1512 处（GitHub）': taisekiLyr,
+  'PGA 等值线（USGS）': pgaLyr,
+  'MMI 等值线（USGS）': mmiLyr,
+  '余震 M≥3.5（USGS）': afLyr,
+  '震中与主要地点': L.layerGroup([epicenter, poi])
+};
+L.control.layers(baseMaps, overlayMaps, { position: 'topright', collapsed: true }).addTo(map);
+
+/* ================= 四要素教学模式 ================= */
+var FACTORS = {
+  quake: {
+    title: '要素一 ｜ 地震动：史无前例的强震动',
+    html: '震级 Mw 6.6（日本气象厅 Mj 6.7），震源深约 35 km，震中位于厚真町东南的山间。<b>厚真町观测到震度 7</b>——北海道有观测记录以来首次；强震计记录到最大 1796 gal（追分站）。遥感研究表明：<b>绝大多数滑坡发生在 PGA > 0.5g 的区域</b>，震动使饱含水分的火山灰层瞬间液化、失稳。',
+    q: '打开「PGA 等值线」和「余震」图层：为什么最惨重的滑坡不在震中正上方，而在厚真町一带？',
+    bounds: [[42.58, 141.60], [42.82, 142.00]],
+    act: function () {
+      if (!map.hasLayer(pgaLyr)) pgaLyr.addTo(map);
+      if (!map.hasLayer(mmiLyr)) mmiLyr.addTo(map);
+      if (!map.hasLayer(afLyr)) afLyr.addTo(map);
+      epicenter.openPopup();
+    }
+  },
+  rain: {
+    title: '要素二 ｜ 前期降雨：台风"飞燕"刚刚离开',
+    html: '就在地震前两天（9 月 4 日），<b>台风"飞燕"</b>（日本称"平成30年台風第21号"）掠过日本列岛并给北海道带来大范围降雨，山体土壤接近饱和。孔隙水压力升高使火山灰层抗剪强度大幅降低——<b>同样的震动，干坡可能稳住，湿坡则整片滑走</b>。这与舟曲"干旱后遇暴雨"的机制形成有趣对照。',
+    q: '为什么"地震前一天下过雨"会显著放大滑坡规模？土壤含水量如何影响力学性质？',
+    bounds: [[42.60, 141.55], [42.85, 142.00]],
+    act: function () {}
+  },
+  geo: {
+    title: '要素三 ｜ 地质：厚层火山灰的"定时炸弹"',
+    html: '灾区丘陵覆盖着来自樽前山等火山的<b>厚层火山碎屑沉积物（火山灰、浮石）</b>：多孔、松散、易饱水。研究人员指出这次滑坡以<b>震动液化型浅层滑坡</b>为主，常从山脊顶部开始启动，流动性极强。札幌清田区的砂土液化、追分地区的广泛破坏都与这套地层有关。',
+    q: '为什么同样一次地震，基岩山地受灾轻、火山灰丘陵受灾重？地质灾害分析为什么要先看"地下"？',
+    bounds: [[42.62, 141.30], [42.85, 141.85]],
+    act: function () { poi.getLayers()[4].openPopup(); }
+  },
+  form: {
+    title: '要素四 ｜ 地形与形态：从山脊开始的群体滑坡',
+    html: '与直觉不同，重灾区是海拔仅 <b>100–400 m 的低丘陵</b>（而非高山）。遥感解译出 <b>7000 余处滑坡</b>，密集分布于约 400–500 km² 的丘陵区，呈"<b>小影响区域、大滑坡面积</b>"的特点：单体以浅层为主，但数量惊人、多滑源点、面积呈指数分布。切到<b>赤色立体地図</b>或<b>正射影像</b>，可以清晰看到山脊处发亮的崩壊裸地。',
+    q: '用测距工具量几条崩壊斑块的宽度——为什么"无数小滑坡"加起来的破坏力超过"少数大滑坡"？',
+    bounds: [[42.66, 141.70], [42.83, 142.00]],
+    act: function () {
+      if (!map.hasLayer(sanpukuLyr)) sanpukuLyr.addTo(map);
+      if (!map.hasLayer(taisekiLyr)) taisekiLyr.addTo(map);
+      if (!map.hasLayer(hokaichi)) hokaichi.addTo(map);
+    }
+  }
+};
+
+var factorBtns = document.querySelectorAll('.factor-btns button');
+factorBtns.forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    factorBtns.forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var f = FACTORS[btn.dataset.factor];
+    if (f.act) f.act();
+    document.getElementById('factor-card').innerHTML =
+      '<h3>' + f.title + '</h3><div>' + f.html + '</div>' +
+      '<div class="q"><b>🤔 想一想：</b>' + f.q + '</div>';
+    map.flyToBounds(f.bounds, { padding: [30, 30], duration: 1.2 });
+  });
+});
+
+/* ================= 选项卡 ================= */
+document.querySelectorAll('.tabs button').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('.tabs button').forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    ['factors', 'tasks', 'about'].forEach(function (t) {
+      document.getElementById('tab-' + t).classList.toggle('hidden', t !== btn.dataset.tab);
+    });
+  });
+});
+
+/* ================= 测距工具 ================= */
+var measuring = false, mpts = [], mline = null, mdots = [];
+var statusEl = document.getElementById('measure-status');
+var MeasureCtrl = L.Control.extend({
+  options: { position: 'topleft' },
+  onAdd: function () {
+    var div = L.DomUtil.create('div', 'measure-btn');
+    div.id = 'measure-toggle';
+    div.innerHTML = '📏';
+    div.title = '测距：单击加点，双击结束';
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.on(div, 'click', function (e) { L.DomEvent.stop(e); toggleMeasure(); });
+    return div;
+  }
+});
+map.addControl(new MeasureCtrl());
+
+function toggleMeasure() {
+  measuring = !measuring;
+  document.getElementById('measure-toggle').classList.toggle('on', measuring);
+  if (!measuring) clearMeasure();
+  statusEl.style.display = measuring ? 'block' : 'none';
+  statusEl.textContent = '测距中：单击地图加点，双击结束';
+}
+function clearMeasure() {
+  mpts = [];
+  if (mline) { map.removeLayer(mline); mline = null; }
+  mdots.forEach(function (d) { map.removeLayer(d); });
+  mdots = [];
+  statusEl.style.display = 'none';
+}
+map.on('click', function (e) {
+  if (!measuring) return;
+  mpts.push(e.latlng);
+  mdots.push(L.circleMarker(e.latlng, { radius: 4, color: '#1565c0', fillOpacity: .9 }).addTo(map));
+  if (mline) map.removeLayer(mline);
+  if (mpts.length > 1) {
+    mline = L.polyline(mpts, { color: '#1565c0', weight: 3, dashArray: '4 4' }).addTo(map);
+    var total = 0;
+    for (var i = 1; i < mpts.length; i++) total += map.distance(mpts[i - 1], mpts[i]);
+    statusEl.textContent = '当前测距：' + (total >= 1000 ? (total / 1000).toFixed(2) + ' km' : Math.round(total) + ' m') + '（双击结束）';
+  }
+});
+map.on('dblclick', function () {
+  if (measuring) {
+    measuring = false;
+    document.getElementById('measure-toggle').classList.remove('on');
+    setTimeout(clearMeasure, 4000);
+  }
+});
+</script>
+</body>
+</html>
