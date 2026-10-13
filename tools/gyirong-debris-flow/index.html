@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>吉隆口岸跨境泥石流 · 双事件灾害链解构工具（教学版）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  html, body { height: 100%; margin: 0; font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  #map { position: absolute; top: 0; bottom: 0; right: 0; left: 340px; }
+  #titlebar {
+    position: absolute; top: 0; left: 0; right: 0; height: 46px; z-index: 1000;
+    background: #263238; color: #fff; display: flex; align-items: center; padding: 0 14px;
+    font-size: 15px; font-weight: bold; box-shadow: 0 1px 4px rgba(0,0,0,.4);
+  }
+  #titlebar small { font-weight: normal; opacity: .75; margin-left: 10px; font-size: 12px; }
+  #panel {
+    position: absolute; top: 46px; bottom: 0; left: 0; width: 340px; z-index: 999;
+    background: #fafafa; box-shadow: 1px 0 4px rgba(0,0,0,.25); overflow-y: auto; padding: 10px 12px; box-sizing: border-box;
+  }
+  .tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+  .tabs button { flex: 1; padding: 8px 0; border: none; border-radius: 6px; cursor: pointer; background: #e0e0e0; font-size: 13px; }
+  .tabs button.active { background: #2e7d32; color: #fff; }
+  .hidden { display: none !important; }
+  .event-card { border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; font-size: 13px; line-height: 1.75; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+  .event-card h3 { margin: 0 0 6px; font-size: 14px; }
+  .event-card.ev2025 { background: #f1f8e9; border-left: 5px solid #558b2f; }
+  .event-card.ev2025 h3 { color: #33691e; }
+  .event-card.ev2026 { background: #fff3f0; border-left: 5px solid #d84315; }
+  .event-card.ev2026 h3 { color: #bf360c; }
+  .event-card b { color: #333; }
+  .factor-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .factor-btns button {
+    padding: 12px 4px; border: none; border-radius: 8px; cursor: pointer; font-size: 14px;
+    background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); color: #333;
+  }
+  .factor-btns button.active { background: #1565c0; color: #fff; }
+  #factor-card { background: #fff; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.15); font-size: 13.5px; line-height: 1.75; }
+  #factor-card h3 { margin: 0 0 8px; font-size: 15px; color: #1565c0; }
+  #factor-card .q { background: #fff8e1; border-left: 4px solid #ffb300; padding: 8px 10px; border-radius: 4px; margin-top: 10px; }
+  #factor-card .q b { color: #e65100; }
+  #tab-tasks ol { padding-left: 20px; font-size: 13.5px; line-height: 1.8; }
+  #tab-tasks details { margin: 6px 0 12px; font-size: 13px; }
+  #tab-tasks summary { cursor: pointer; color: #1565c0; }
+  #tab-about { font-size: 13px; line-height: 1.8; }
+  #tab-about .warn { background: #ffebee; border-left: 4px solid #c62828; padding: 8px 10px; border-radius: 4px; }
+  .measure-btn {
+    width: 34px; height: 34px; background: #fff; border-radius: 4px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 17px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.4); margin: 10px 0 0 10px; user-select: none;
+  }
+  .measure-btn.on { background: #1565c0; color: #fff; }
+  #measure-status {
+    position: absolute; bottom: 18px; left: 352px; z-index: 1000; background: rgba(38,50,56,.92);
+    color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 13px; display: none;
+  }
+  #legend {
+    position: absolute; bottom: 18px; right: 12px; z-index: 1000; background: rgba(255,255,255,.94);
+    padding: 10px 12px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.3); font-size: 12px; line-height: 1.7;
+    max-height: 50%; overflow-y: auto;
+  }
+  .leaflet-container { font: inherit; }
+  @media (max-width: 720px) {
+    #panel { width: 100%; right: 0; height: 45%; top: auto; }
+    #map { left: 0; top: 46px; bottom: 45%; }
+  }
+</style>
+</head>
+<body>
+<div id="titlebar">吉隆口岸跨境泥石流（2025 溃决洪水 · 2026 冰岩崩）· 灾害链解构工具<small>Hello-ai-GIS 教学工具 v0.1 ｜ 真实图层：全球 DEM / USGS（另含示意图层，见"关于"）</small></div>
+
+<div id="panel">
+  <div class="tabs">
+    <button data-tab="compare" class="active">事件对比</button>
+    <button data-tab="factors">四要素</button>
+    <button data-tab="tasks">探究任务</button>
+    <button data-tab="about">关于</button>
+  </div>
+
+  <div id="tab-compare" class="tab-content">
+    <div class="event-card ev2025">
+      <h3>事件一 ｜ 2025-07-08 冰湖溃决洪水</h3>
+      高海拔<b>冰面湖管涌溃决</b> → 东林藏布（Lhende Khola）暴涨 → <b>冲毁中尼友谊桥</b>，17 名中方人员失联，吉隆口岸关闭至 2026-01-01。触发类型：<b>冰湖溃决型洪水（GLOF）</b>。
+    </div>
+    <div class="event-card ev2026">
+      <h3>事件二 ｜ 2026-08-26 冰岩崩—泥石流</h3>
+      蓝塘里壤峰北坡 5200 m 处<b>冰岩崩启动</b>（源区约 0.72 km²），沿沟谷运动约 <b>22 km</b>、落差约 3400 m，约 <b>7 分钟</b>冲抵吉隆口岸，0.7 km²、27 栋建筑被夷平，并沿波特科西河—特里苏里河传入尼泊尔。触发类型：<b>冰岩崩转化型泥石流</b>。
+    </div>
+    <div class="event-card" style="background:#fff;border-left:5px solid #1565c0;">
+      <h3 style="color:#1565c0;">为什么把两次事件放在一起？</h3>
+      同一条沟（东林藏布）、同一个口岸，<b>两年内两次巨灾</b>——这不是巧合，而是一条完整的<b>"气候背景 → 物源积累 → 地形放大 → 链式传导"灾害链</b>。2025 是前奏，2026 是总爆发。点击"四要素"页签逐步解构。
+    </div>
+  </div>
+
+  <div id="tab-factors" class="tab-content hidden">
+    <div class="factor-btns">
+      <button data-factor="climate">① 气候背景</button>
+      <button data-factor="source">② 物源条件</button>
+      <button data-factor="terrain">③ 地形条件</button>
+      <button data-factor="chain">④ 链式放大</button>
+    </div>
+    <div id="factor-card"><p style="color:#777">点击上方按钮，解构吉隆灾害链的四个环节，并与舟曲（暴雨型）、北海道（地震型）对比。</p></div>
+  </div>
+
+  <div id="tab-tasks" class="tab-content hidden">
+    <ol>
+      <li><b>算一算</b>：2026 年泥石流从源区到口岸约 22 km、用时约 7 分钟。算一算平均速度，相当于多少 km/h？再对比一下高速公路限速。</li>
+      <details><summary>参考答案</summary>22 000 m ÷ 420 s ≈ <b>52 m/s ≈ 190 km/h</b>——比高速动车还快。原因是约 3400 m 的巨大落差转化为动能，加上峡谷束流与沟床水石混合物的低摩擦特性。</details>
+      <li><b>找一找</b>：保持"高程晕渲"底图，沿红色示意路径找一找 V 型峡谷最窄的路段——用测距工具量一量谷宽，想想为什么束窄处能量更集中、破坏更强。</li>
+      <li><b>比一比</b>：2025 溃决洪水与 2026 泥石流的触发机制有何不同？两次事件的共同点是什么？</li>
+      <details><summary>参考答案</summary>不同：2025 是冰湖管涌溃决引发的洪水（水量主导），2026 是冰岩崩直接转化为泥石流（物源+落差主导），且 2026 前期降水偏少、并非暴雨触发。共同点：都发生在同一条高山峡谷河流系统，都被 V 型峡谷放大，都因跨境河流传导影响中尼两国。</details>
+      <li><b>想一想</b>：研究指出 2026 事件"前期降水偏少"，却仍发生巨灾。这对传统的"降水阈值预警"提出了什么挑战？除了降水，我们还应该监测什么？</li>
+      <details><summary>思路提示</summary>变暖背景下，冰岩体长期蠕变、冻土退化、冰川减薄对冰岩接触面的削弱是慢变量，无法靠短期降水阈值捕捉。应增加：冰湖/冰川遥感监测、冰岩崩声学/地震监测、冻土与冰川变化长期观测。</details>
+      <li><b>评一评</b>：吉隆口岸位于东林藏布汇入吉隆藏布交汇处附近。从灾害链角度评价这一选址，如果你是规划者，会如何调整布局？</li>
+      <details><summary>思路提示</summary>交汇处正好处于泥石流出谷的"放大器出口"，2026 事件证明了风险。可考虑：建筑退离冲积扇/交汇区、口岸功能向高处迁移、设置多级拦挡与导流堤、建立中尼跨境联合预警。</details>
+    </ol>
+  </div>
+
+  <div id="tab-about" class="tab-content hidden">
+    <p><b>这是什么？</b></p>
+    <p>Hello-ai-GIS 第三个教学工具：解构<b>中尼边境吉隆口岸两年内两次跨境巨灾</b>（2025 冰湖溃决洪水、2026 冰岩崩泥石流）的完整灾害链。与舟曲（暴雨型）、北海道（地震型）工具构成"地质灾害三案例"系列。</p>
+    <p class="warn">⚠️ <b>数据分级说明</b>：底图高程晕渲来自<b>真实全球 DEM</b>（AWS Open Data 地形瓦片，SRTM/AW3D30）；2015 尼泊尔地震震中来自 <b>USGS</b> 并运行时复核。源区范围、运动路径、冰湖位置、河流走向等<b>为教学示意</b>，基于公开文献描述手工勾绘，非实测测绘数据，不可用于工程或防灾决策。</p>
+    <p><b>图层来源</b>：<br/>· 全球 DEM 晕渲：AWS Open Data elevation-tiles（terrarium 编码，30 m 级）<br/>· 卫星影像：Esri World Imagery　浅色底图：CartoDB<br/>· 震中与地震参数：USGS 地震目录 API<br/>· 事件参数：中科院青藏高原所《科学通报》研究、新华社发布会、成都理工冰湖研究（见案例档案 cases/gyirong）</p>
+    <p><b>使用条件</b>：需联网加载；推荐 Chrome / Edge。</p>
+    <p><b>开源</b>：MIT License。</p>
+  </div>
+</div>
+
+<div id="map"></div>
+<div id="measure-status"></div>
+
+<div id="legend">
+  <b>图例与状态</b><br/>
+  <span style="color:#c62828">▨</span> 2026 冰岩崩源区（示意）<br/>
+  <span style="color:#d32f2f">—</span> 2026 泥石流路径（示意）<br/>
+  <span style="color:#2e7d32">--</span> 2025 溃决洪水路径（示意）<br/>
+  <span style="color:#2e7d32">●</span> 2025 溃决冰湖（示意）<br/>
+  <span style="color:#1565c0">—</span> 吉隆藏布（示意）　<span style="color:#00838f">●</span> 冰湖群（研究区示意）<br/>
+  <span style="font-size:15px;color:#ef6c00">★</span> 2015 尼泊尔地震震中（USGS，<span id="st-usgs">复核中…</span>）<br/>
+  ● 主要地点（口岸 / 友谊桥 / 吉隆镇 / 加德满都）
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+/* ================= 基础地图 ================= */
+var CENTER = [28.34, 85.40];
+var map = L.map('map', { center: CENTER, zoom: 11, minZoom: 7, maxZoom: 18 });
+
+/* ---- 真实 DEM 高程晕渲（terrarium 瓦片 + 喜马拉雅色带） ---- */
+var DEM_STOPS = [
+  [1800, [ 56, 118,  61]],
+  [2800, [138, 164,  96]],
+  [4200, [176, 158, 112]],
+  [5800, [198, 188, 202]],
+  [7300, [248, 250, 255]]
+];
+function demColor(h) {
+  if (h <= 0) return [164, 196, 222];
+  for (var i = 1; i < DEM_STOPS.length; i++) {
+    if (h < DEM_STOPS[i][0]) {
+      var t = (h - DEM_STOPS[i - 1][0]) / (DEM_STOPS[i][0] - DEM_STOPS[i - 1][0]);
+      var a = DEM_STOPS[i - 1][1], b = DEM_STOPS[i][1];
+      return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+    }
+  }
+  return DEM_STOPS[DEM_STOPS.length - 1][1];
+}
+var HypsoLayer = L.TileLayer.extend({
+  createTile: function (coords, done) {
+    var tile = document.createElement('canvas');
+    var size = this.getTileSize();
+    tile.width = size.x; tile.height = size.y;
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = function () {
+      var ctx = tile.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      try {
+        var d = ctx.getImageData(0, 0, size.x, size.y).data;
+        var out = ctx.createImageData(size.x, size.y);
+        var o = out.data;
+        for (var p = 0; p < d.length; p += 4) {
+          var h = d[p] * 256 + d[p + 1] + d[p + 2] / 256 - 32768;
+          var c = demColor(h);
+          o[p] = c[0]; o[p + 1] = c[1]; o[p + 2] = c[2]; o[p + 3] = 255;
+        }
+        ctx.putImageData(out, 0, 0);
+      } catch (e) { /* 瓦片解码失败时保留原始图像 */ }
+      done(null, tile);
+    };
+    img.onerror = function () { done(new Error('tile failed'), tile); };
+    img.src = this.getTileUrl(coords);
+    return tile;
+  }
+});
+var demLyr = new HypsoLayer('https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png', {
+  attribution: 'DEM: AWS Open Data（SRTM/AW3D30）', maxNativeZoom: 13, maxZoom: 18
+});
+var esriImg = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Esri World Imagery', maxZoom: 18
+});
+var cartoLight = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: 'CartoDB', maxZoom: 18
+});
+demLyr.addTo(map);
+
+var baseMaps = {
+  '高程晕渲（真实 DEM）': demLyr,
+  '卫星影像（Esri）': esriImg,
+  '浅色地图（CartoDB）': cartoLight
+};
+
+/* ================= 示意图层（依据公开文献手工勾绘，非实测） ================= */
+var drawOpt = { color: '#d32f2f', weight: 4, opacity: .9 };
+var clickOpt = { color: '#880e0e', weight: 2, opacity: .95, fillColor: '#c62828', fillOpacity: .55 };
+
+/* 2026 源区（蓝塘里壤峰北坡 5200 m 附近） */
+var src2026 = L.polygon(
+  [[28.202, 85.518], [28.202, 85.526], [28.208, 85.526], [28.208, 85.518]],
+  clickOpt
+).bindPopup('<b>2026 冰岩崩源区（示意）</b><br/>蓝塘里壤峰北坡约 5200 m<br/>源区面积约 0.72 km²（文献值）<br/>依据《科学通报》研究描述勾绘');
+
+/* 2026 运动路径：错坚河 → 郭巴峡曲（普热普强藏布）→ 东林藏布 → 吉隆藏布交汇处 */
+var path2026 = L.polyline([
+  [28.205, 85.525], [28.218, 85.512], [28.232, 85.495], [28.246, 85.472],
+  [28.258, 85.450], [28.268, 85.426], [28.277, 85.402], [28.283, 85.388],
+  [28.287, 85.376]
+], Object.assign({}, drawOpt, { weight: 5 })).bindPopup(
+  '<b>2026 泥石流运动路径（示意）</b><br/>全长约 22 km，落差约 3400 m<br/>约 7 分钟（10:52 → 10:59）冲抵口岸，均速约 50 m/s'
+);
+
+/* 2025 溃决湖 + 洪水路径 */
+var lake2025 = L.circle([28.330, 85.427], {
+  radius: 160, color: '#1b5e20', weight: 2, fillColor: '#2e7d32', fillOpacity: .7
+}).bindPopup('<b>2025 溃决冰湖（示意）</b><br/>冰面湖管涌溃决 → 东林藏布暴涨<br/>友谊桥冲毁，17 名中方人员失联');
+var path2025 = L.polyline([
+  [28.330, 85.427], [28.322, 85.418], [28.312, 85.408], [28.302, 85.396],
+  [28.294, 85.385], [28.287, 85.376]
+], { color: '#2e7d32', weight: 4, opacity: .9, dashArray: '8 6' }).bindPopup(
+  '<b>2025 溃决洪水路径（示意）</b><br/>沿东林藏布下行，冲毁中尼友谊桥<br/>口岸关闭至 2026-01-01'
+);
+
+/* 吉隆藏布（干流，示意） */
+var kyirongRiver = L.polyline([
+  [28.240, 85.362], [28.262, 85.370], [28.287, 85.376], [28.305, 85.366],
+  [28.325, 85.348], [28.345, 85.328], [28.365, 85.312], [28.383, 85.300]
+], { color: '#1565c0', weight: 3, opacity: .85 }).bindPopup('<b>吉隆藏布（示意）</b><br/>向南流入尼泊尔，汇入特里苏里河—波特科西河水系');
+
+/* 上游冰湖群（成都理工研究区：55 个冰湖共 3.39 km²，此处示例 12 个） */
+var lakePts = [
+  [28.315, 85.432], [28.322, 85.441], [28.328, 85.450], [28.335, 85.443],
+  [28.341, 85.435], [28.318, 85.448], [28.333, 85.458], [28.344, 85.447],
+  [28.310, 85.440], [28.325, 85.462], [28.338, 85.425], [28.352, 85.438]
+];
+var lakeGrp = L.layerGroup(lakePts.map(function (p) {
+  return L.circleMarker(p, { radius: 5, color: '#006064', weight: 1, fillColor: '#00838f', fillOpacity: .75 });
+})).bindPopup('<b>冰湖群（示意）</b><br/>研究区上游共 55 个冰湖、面积共 3.39 km²（成都理工研究）<br/>气候变暖下冰湖溃决风险整体上升');
+var lakeGrpNote = L.marker([28.318, 85.438], {
+  icon: L.divIcon({ html: '<div style="background:rgba(0,131,143,.85);color:#fff;padding:2px 7px;border-radius:10px;font-size:11px;white-space:nowrap">冰湖群</div>', iconSize: [52, 20], iconAnchor: [26, 10] })
+});
+
+/* 主要地点 */
+var poi = L.layerGroup([
+  L.circleMarker([28.287, 85.376], { radius: 8, color: '#4a148c', fillColor: '#7b1fa2', fillOpacity: .95 })
+    .bindPopup('<b>吉隆口岸（热索）</b><br/>2026 事件：0.7 km²、27 栋建筑被夷平<br/>位于东林藏布汇入吉隆藏布交汇处附近'),
+  L.circleMarker([28.2835, 85.3715], { radius: 6, color: '#b71c1c', fillColor: '#e53935', fillOpacity: .9 })
+    .bindPopup('<b>中尼友谊桥</b><br/>2025-07-08 被溃决洪水冲毁'),
+  L.circleMarker([28.383, 85.300], { radius: 6, color: '#37474f', fillColor: '#78909c', fillOpacity: .9 })
+    .bindPopup('<b>吉隆镇</b><br/>沟谷上游城镇，位于更高台地'),
+  L.circleMarker([27.717, 85.324], { radius: 6, color: '#37474f', fillColor: '#78909c', fillOpacity: .9 })
+    .bindPopup('<b>加德满都</b><br/>特里苏里河流域下游大城市——跨境灾害链的远端承灾体')
+]).addTo(map);
+
+/* 2015 尼泊尔地震震中（USGS 硬编码 + 运行时 API 复核） */
+var epicenters = L.layerGroup();
+function starIcon() {
+  return L.divIcon({ html: '<div style="font-size:22px;color:#ef6c00;text-shadow:0 0 3px #fff">★</div>', iconSize: [26, 26], iconAnchor: [13, 13] });
+}
+var epiGorkha = L.marker([28.2305, 84.7314], { icon: starIcon() })
+  .bindPopup('<b>2015-04-25 M7.8 廓尔喀地震（USGS）</b><br/>深度约 8 km<br/>震松了喜马拉雅南坡大面积岩体，为后续泥石流提供物源');
+var epiDolakha = L.marker([27.8369, 86.5776], { icon: starIcon() })
+  .bindPopup('<b>2015-05-12 M7.3 Dolakha 强余震（USGS）</b><br/>深度约 18.5 km<br/>距吉隆沟东侧更近，进一步破坏山体稳定性');
+epicenters.addLayer(epiGorkha).addLayer(epiDolakha).addTo(map);
+
+/* USGS 运行时复核（兼容单个 Feature 与 FeatureCollection 两种返回结构） */
+function firstFeature(gj) {
+  if (!gj) return null;
+  if (gj.type === 'FeatureCollection') return (gj.features && gj.features[0]) || null;
+  if (gj.type === 'Feature') return gj;
+  return null;
+}
+function usgsVerify(lat, lon, dayStart, dayEnd, marker, label) {
+  var url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=' + dayStart +
+    '&endtime=' + dayEnd + '&latitude=' + lat + '&longitude=' + lon + '&maxradiuskm=40';
+  fetch(url).then(function (r) { return r.json(); }).then(function (gj) {
+    var f = firstFeature(gj);
+    if (f && f.geometry) {
+      var c = f.geometry.coordinates, p = f.properties || {};
+      marker.setLatLng([c[1], c[0]]);
+      marker.setPopupContent('<b>' + label + '</b><br/>USGS 复核：M' + (p.mag || '?') +
+        '　深度 ' + (c[2] != null ? c[2].toFixed(1) : '?') + ' km<br/>' +
+        new Date(p.time).toLocaleString('zh-CN') + '<br/>坐标：' + c[1].toFixed(4) + ', ' + c[0].toFixed(4));
+    }
+  }).catch(function () {});
+}
+usgsVerify(28.2305, 84.7314, '2015-04-25', '2015-04-26', epiGorkha, '2015 廓尔喀主震 M7.8（USGS）');
+usgsVerify(27.8369, 86.5776, '2015-05-12', '2015-05-13', epiDolakha, '2015 Dolakha 强余震 M7.3（USGS）');
+Promise.all([
+  fetch('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2015-04-25&endtime=2015-04-26&latitude=28.23&longitude=84.73&maxradiuskm=40').then(function (r) { return r.json(); }).catch(function () { return null; }),
+  fetch('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2015-05-12&endtime=2015-05-13&latitude=27.84&longitude=86.58&maxradiuskm=40').then(function (r) { return r.json(); }).catch(function () { return null; })
+]).then(function (rs) {
+  var ok = rs.every(function (g) { return g && firstFeature(g); });
+  document.getElementById('st-usgs').textContent = ok ? '已在线复核 ✓' : '离线（用硬编码值）';
+});
+
+/* ================= 图层控制 ================= */
+var ev2026Grp = L.layerGroup([src2026, path2026]);
+var ev2025Grp = L.layerGroup([lake2025, path2025]);
+var lakeAll = L.layerGroup([lakeGrp, lakeGrpNote]);
+var overlayMaps = {
+  '2026 冰岩崩源区+路径（示意）': ev2026Grp,
+  '2025 溃决湖+洪水路径（示意）': ev2025Grp,
+  '吉隆藏布干流（示意）': kyirongRiver,
+  '上游冰湖群（示意）': lakeAll,
+  '2015 地震震中（USGS）': epicenters,
+  '主要地点': poi
+};
+L.control.layers(baseMaps, overlayMaps, { position: 'topright', collapsed: true }).addTo(map);
+ev2026Grp.addTo(map);
+ev2025Grp.addTo(map);
+kyirongRiver.addTo(map);
+lakeAll.addTo(map);
+
+/* ================= 灾害链四要素教学模式 ================= */
+var FACTORS = {
+  climate: {
+    title: '环节一 ｜ 气候背景：变暖驱动的"慢变量"',
+    html: '两次事件的共同背景是<b>气候变暖</b>：冰川减薄、冰体与基岩接触面长期受热融水与冻融作用削弱。中科院青藏所研究指出，2026 事件<b>并非暴雨触发</b>——前期降水反而偏少；是冰岩体长期蠕变后瞬间失稳。这与舟曲"暴雨扣扳机"形成根本区别。',
+    q: '如果降水不是触发因子，"防灾该监测什么"？降水阈值预警在高寒山区还够用吗？',
+    bounds: [[28.16, 85.44], [28.26, 85.60]],
+    act: function () { src2026.openPopup(); }
+  },
+  source: {
+    title: '环节二 ｜ 物源条件：装填好的"弹药库"',
+    html: '三方面物源叠加：① 高寒山区<b>冰碛物、崩积物与冻融风化碎屑</b>长期堆积；② 上游 <b>55 个冰湖共 3.39 km²</b>（成都理工研究），冰川退缩使冰湖扩张、坝体脆弱；③ <b>2015 年 M7.8 + M7.3 两次大地震</b>震松了喜马拉雅南坡岩体，山体伤痕至今未恢复。点击橙色 ★ 查看两次震中的位置。',
+    q: '为什么 2015 年地震会在 2026 年才"显现后果"？物源积累的时间尺度对风险管理有什么启示？',
+    bounds: [[27.70, 84.60], [28.40, 86.70]],
+    act: function () { if (!map.hasLayer(epicenters)) epicenters.addTo(map); epiGorkha.openPopup(); }
+  },
+  terrain: {
+    title: '环节三 ｜ 地形条件：3400 m 落差的"加速器"',
+    html: '源区约 <b>5200 m</b>，口岸约 <b>1800 m</b>，落差约 <b>3400 m</b>。泥石流沿 V 型峡谷运动约 <b>22 km</b>，峡谷束流使能量集中、速度维持——实测约 7 分钟抵达，均速约 <b>50 m/s</b>。切到「高程晕渲」底图，可以清晰看到这条从雪山直插谷口的"滑梯"。',
+    q: '用测距工具量一量源区到口岸的直线距离，与 22 km 的沟谷长度对比——"直线距离"为什么不能用来估算灾害到达时间？',
+    bounds: [[28.18, 85.34], [28.34, 85.56]],
+    act: function () { path2026.openPopup(); }
+  },
+  chain: {
+    title: '环节四 ｜ 链式放大：一条河的两次爆发与跨境传导',
+    html: '<b>2025</b>：冰湖管涌溃决 → 东林藏布暴涨 → 友谊桥冲毁、口岸关闭半年。<b>2026</b>：冰岩崩 → 泥石流 → 约 7 分钟冲抵口岸、27 栋建筑夷平 → 残余物质沿<b>波特科西河—特里苏里河</b>传入尼泊尔。同一条沟、同一个口岸——灾害链不是单次事件，而是<b>相互放大的连续过程</b>。',
+    q: '如果你是口岸管理者，2025 事件发生后应该做哪些事，才可能避免 2026 的悲剧？列出至少三条。',
+    bounds: [[28.16, 85.30], [28.42, 85.50]],
+    act: function () {
+      if (!map.hasLayer(ev2025Grp)) ev2025Grp.addTo(map);
+      if (!map.hasLayer(ev2026Grp)) ev2026Grp.addTo(map);
+      if (!map.hasLayer(kyirongRiver)) kyirongRiver.addTo(map);
+    }
+  }
+};
+
+var factorBtns = document.querySelectorAll('.factor-btns button');
+factorBtns.forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    factorBtns.forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var f = FACTORS[btn.dataset.factor];
+    if (f.act) f.act();
+    document.getElementById('factor-card').innerHTML =
+      '<h3>' + f.title + '</h3><div>' + f.html + '</div>' +
+      '<div class="q"><b>🤔 想一想：</b>' + f.q + '</div>';
+    map.flyToBounds(f.bounds, { padding: [30, 30], duration: 1.2 });
+  });
+});
+
+/* ================= 选项卡 ================= */
+document.querySelectorAll('.tabs button').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('.tabs button').forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    ['compare', 'factors', 'tasks', 'about'].forEach(function (t) {
+      document.getElementById('tab-' + t).classList.toggle('hidden', t !== btn.dataset.tab);
+    });
+  });
+});
+
+/* ================= 测距工具 ================= */
+var measuring = false, mpts = [], mline = null, mdots = [];
+var statusEl = document.getElementById('measure-status');
+var MeasureCtrl = L.Control.extend({
+  options: { position: 'topleft' },
+  onAdd: function () {
+    var div = L.DomUtil.create('div', 'measure-btn');
+    div.id = 'measure-toggle';
+    div.innerHTML = '📏';
+    div.title = '测距：单击加点，双击结束';
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.on(div, 'click', function (e) { L.DomEvent.stop(e); toggleMeasure(); });
+    return div;
+  }
+});
+map.addControl(new MeasureCtrl());
+
+function toggleMeasure() {
+  measuring = !measuring;
+  document.getElementById('measure-toggle').classList.toggle('on', measuring);
+  if (!measuring) clearMeasure();
+  statusEl.style.display = measuring ? 'block' : 'none';
+  statusEl.textContent = '测距中：单击地图加点，双击结束';
+}
+function clearMeasure() {
+  mpts = [];
+  if (mline) { map.removeLayer(mline); mline = null; }
+  mdots.forEach(function (d) { map.removeLayer(d); });
+  mdots = [];
+  statusEl.style.display = 'none';
+}
+map.on('click', function (e) {
+  if (!measuring) return;
+  mpts.push(e.latlng);
+  mdots.push(L.circleMarker(e.latlng, { radius: 4, color: '#1565c0', fillOpacity: .9 }).addTo(map));
+  if (mline) map.removeLayer(mline);
+  if (mpts.length > 1) {
+    mline = L.polyline(mpts, { color: '#1565c0', weight: 3, dashArray: '4 4' }).addTo(map);
+    var total = 0;
+    for (var i = 1; i < mpts.length; i++) total += map.distance(mpts[i - 1], mpts[i]);
+    statusEl.textContent = '当前测距：' + (total >= 1000 ? (total / 1000).toFixed(2) + ' km' : Math.round(total) + ' m') + '（双击结束）';
+  }
+});
+map.on('dblclick', function () {
+  if (measuring) {
+    measuring = false;
+    document.getElementById('measure-toggle').classList.remove('on');
+    setTimeout(clearMeasure, 4000);
+  }
+});
+</script>
+</body>
+</html>
