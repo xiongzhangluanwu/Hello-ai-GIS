@@ -36,9 +36,11 @@ papers/
 ├── 00_README.md（本文件）
 ├── kameda2019/
 │   ├── Kameda2019_中文翻译.md
+│   ├── Kameda2019_SciRep.pdf（原文全本，21页，来自 PMC 存档）
 │   └── figures/fig1–6（论文原版插图，JPG）
 ├── wang2022/
 │   ├── WangNam2022_中文翻译.md
+│   ├── WangNam2023_Chapter_Springer.pdf（原文书章，9页）
 │   └── figures/fig2、3、7（PNG）
 ├── chigira2019/
 │   ├── Chigira2019_中文翻译.md
@@ -54,9 +56,9 @@ papers/
 │   └── figures/（7张）
 ├── gsj_ishimaru2018/
 │   ├── GSJ厚真町地质_中文翻译.md
-│   ├── gsj03_atuma_geology.html（原网页存档）
+│   ├── GSJ_Ishimaru2018_AtumaGeology.pdf（由官方网页存档转制，5页）
 │   └── figures/fig06、fig14（原网页図2、図3）
-└──（根目录）legend.json、各论文PDF与提取文本
+└──（根目录）gsj03_atuma_geology.html（GSJ原网页存档）、legend.json、各论文提取文本
 ```
 
 ## 版权说明
