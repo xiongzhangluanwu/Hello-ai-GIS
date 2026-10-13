@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>Hello-ai-GIS ｜ 项目成果总览</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #f0f2f5; color: #263238; }
+  header {
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 55%, #1565c0 100%);
+    color: #fff; padding: 34px 20px 30px; text-align: center;
+  }
+  header h1 { font-size: 26px; letter-spacing: 1px; }
+  header p { margin-top: 10px; opacity: .92; font-size: 14px; line-height: 1.8; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .stats { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 18px; }
+  .stat { background: rgba(255,255,255,.16); border-radius: 10px; padding: 8px 18px; font-size: 13px; }
+  .stat b { font-size: 19px; display: block; }
+  main { max-width: 1060px; margin: 0 auto; padding: 24px 16px 60px; }
+  h2 { font-size: 19px; margin: 30px 0 4px; padding-left: 11px; border-left: 5px solid #2e7d32; }
+  h2 small { font-weight: normal; color: #78909c; font-size: 13px; margin-left: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 14px; margin-top: 14px; }
+  .card {
+    background: #fff; border-radius: 12px; padding: 16px 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); display: flex; flex-direction: column;
+    border-top: 4px solid #90a4ae; transition: transform .15s, box-shadow .15s;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 4px 14px rgba(0,0,0,.14); }
+  .card.tool { border-top-color: #2e7d32; }
+  .card.doc  { border-top-color: #1565c0; }
+  .card.paper{ border-top-color: #ef6c00; }
+  .card h3 { font-size: 16px; margin-bottom: 6px; }
+  .card .tag {
+    display: inline-block; font-size: 11px; color: #fff; background: #78909c;
+    border-radius: 4px; padding: 1px 7px; margin-bottom: 8px; align-self: flex-start;
+  }
+  .card.tool .tag { background: #2e7d32; }
+  .card.doc .tag  { background: #1565c0; }
+  .card.paper .tag{ background: #ef6c00; }
+  .card p { font-size: 13px; line-height: 1.75; color: #546e7a; flex: 1; }
+  .card .btns { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .card a {
+    font-size: 13px; text-decoration: none; padding: 6px 14px; border-radius: 6px;
+    background: #2e7d32; color: #fff;
+  }
+  .card a.sec { background: #eceff1; color: #37474f; }
+  .card a:hover { opacity: .88; }
+  footer { text-align: center; color: #90a4ae; font-size: 12px; padding: 20px 0 34px; line-height: 1.9; }
+  @media (max-width: 640px) { header h1 { font-size: 21px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Hello-ai-GIS ｜ 用 AI 把专业 GIS 变成高中生能用的课堂工具</h1>
+  <p>面向高中地理课堂的轻型 HTML GIS 工具集：以真实数据图层解构真实世界灾害案例，服务"看分布 → 叠图层 → 析成因 → 提对策"的探究式教学。开源（MIT），仓库：github.com/xiongzhangluanwu/Hello-ai-GIS</p>
+  <div class="stats">
+    <div class="stat"><b>3</b>个教学工具</div>
+    <div class="stat"><b>3</b>份案例档案</div>
+    <div class="stat"><b>3</b>课时教学设计</div>
+    <div class="stat"><b>6</b>篇文献中文导读</div>
+    <div class="stat"><b>10</b>次提交</div>
+  </div>
+</header>
+<main>
+
+<h2>🗺 教学工具<small>零安装单文件，浏览器直接打开（需联网加载数据图层）</small></h2>
+<div class="grid">
+  <div class="card tool">
+    <span class="tag">暴雨型</span>
+    <h3>舟曲"8·8"泥石流四要素解构工具</h3>
+    <p>2010 甘肃舟曲特大泥石流。DEM 地形晕渲（含山体阴影）、沟道与流域示意、Overture Maps 2691 栋真实建筑轮廓、逐时雨量图，Bing↔高德卫星影像拖动对比。</p>
+    <div class="btns">
+      <a href="tools/zhouqu-debris-flow/index.html" target="_blank">打开工具</a>
+      <a class="sec" href="cases/zhouqu/README.md" target="_blank">案例档案</a>
+    </div>
+  </div>
+  <div class="card tool">
+    <span class="tag">地震型</span>
+    <h3>北海道胆振东部地震滑坡解构工具</h3>
+    <p>2018 北海道胆振地震（Mw 6.6）。喜多崩壊 6116 处/堆积 1512 处矢量、国土地理院分布图与正射影像、PGA/MMI 等值线、気象庁雨量、産総研地质图 + 典型地层柱状剖面。</p>
+    <div class="btns">
+      <a href="tools/hokkaido-iburi-landslide/index.html" target="_blank">打开工具</a>
+      <a class="sec" href="cases/hokkaido-iburi/README.md" target="_blank">案例档案</a>
+    </div>
+  </div>
+  <div class="card tool">
+    <span class="tag">气候变暖型</span>
+    <h3>吉隆口岸跨境泥石流双事件解构工具</h3>
+    <p>中尼边境同一条沟两年两爆：2025 冰湖溃决洪水 + 2026 冰岩崩泥石流。全球 DEM 喜马拉雅色带晕渲、双事件示意路径、上游冰湖群、2015 尼泊尔双震震中（USGS 在线复核）。</p>
+    <div class="btns">
+      <a href="tools/gyirong-debris-flow/index.html" target="_blank">打开工具</a>
+      <a class="sec" href="cases/gyirong/README.md" target="_blank">案例档案</a>
+    </div>
+  </div>
+</div>
+
+<h2>📘 教学设计<small>上海版必修一 · 主题12 常见的地质灾害 · 单元 3 课时</small></h2>
+<div class="grid">
+  <div class="card doc">
+    <span class="tag">单元 + 公开课</span>
+    <h3>《滑坡与泥石流》单元与课时教学设计</h3>
+    <p>完整单元设计（大概念、三课时规划、教学评一体化量规）＋第 2 课时公开课详案（40 分钟，舟曲＋北海道双案例）＋第 3 课时收官课详案（吉隆灾害链）＋两份可打印学生任务单。</p>
+    <div class="btns">
+      <a href="docs/滑坡与泥石流_单元与课时教学设计.md" target="_blank">阅读（Markdown）</a>
+      <a class="sec" href="docs/滑坡与泥石流_单元与课时教学设计.docx">下载 Word</a>
+    </div>
+  </div>
+  <div class="card doc">
+    <span class="tag">文献调研</span>
+    <h3>文献调研清单（CSV）</h3>
+    <p>GIS 教学与滑坡教学两个主题的学术文献检索结果清单，供备课与论文写作参考。</p>
+    <div class="btns">
+      <a href="docs/references/scholar_gis_teaching.csv" target="_blank">GIS 教学</a>
+      <a class="sec" href="docs/references/scholar_landslide_pedagogy.csv" target="_blank">滑坡教学</a>
+    </div>
+  </div>
+</div>
+
+<h2>🌍 案例档案<small>教师备课底稿：事件要素表、图层数据索引、数据声明、参考文献</small></h2>
+<div class="grid">
+  <div class="card doc">
+    <span class="tag">甘肃舟曲</span>
+    <h3>舟曲"8·8"泥石流案例档案</h3>
+    <p>2010-08-08 凌晨，三眼峪泥石流 5 分钟淹没县城（1467 人遇难）。事件要素、四要素分析框架、官方数据源索引。</p>
+    <div class="btns"><a href="cases/zhouqu/README.md" target="_blank">查看档案</a></div>
+  </div>
+  <div class="card doc">
+    <span class="tag">日本北海道</span>
+    <h3>北海道胆振地震滑坡案例档案</h3>
+    <p>2018-09-06 Mw 6.6，震度 7 引发数千处滑坡。四套机构编目对比、论文资料包导读、国土地理院/USGS/GitHub 数据索引。</p>
+    <div class="btns"><a href="cases/hokkaido-iburi/README.md" target="_blank">查看档案</a></div>
+  </div>
+  <div class="card doc">
+    <span class="tag">中尼边境</span>
+    <h3>吉隆口岸双事件案例档案</h3>
+    <p>2025 溃决洪水 + 2026 冰岩崩泥石流，落差 3400 m、22 km 约 7 分钟。灾害链四环节、三案例对比表、示意数据声明。</p>
+    <div class="btns"><a href="cases/gyirong/README.md" target="_blank">查看档案</a></div>
+  </div>
+</div>
+
+<h2>📄 文献资料包<small>北海道案例 6 篇核心论文：中文翻译 + 原始图片</small></h2>
+<div class="grid">
+  <div class="card paper">
+    <span class="tag">导读</span>
+    <h3>papers/ 总导读与阅读顺序建议</h3>
+    <p>六篇文献（Kameda 2019、千木良 2019、Wang &amp; Nam、王功輝、石丸、産総研 GSJ）的内容概览与推荐阅读顺序。</p>
+    <div class="btns"><a href="cases/hokkaido-iburi/papers/00_README.md" target="_blank" onclick="return go(this,'cases/hokkaido-iburi/papers/00_README.md')">阅读导读</a></div>
+  </div>
+  <div class="card paper">
+    <span class="tag">工具脚本</span>
+    <h3>md2docx.py 与项目 README</h3>
+    <p>Markdown 转 Word 脚本（教学设计 docx 即由它生成）；项目愿景与路线图的完整说明。</p>
+    <div class="btns">
+      <a href="scripts/md2docx.py" target="_blank">查看脚本</a>
+      <a class="sec" href="README.md" target="_blank" onclick="return go(this,'README.md')">项目 README</a>
+    </div>
+  </div>
+</div>
+
+</main>
+<footer>
+  Hello-ai-GIS ｜ MIT License ｜ 本页为项目成果总览，与各工具内的"关于"页签数据声明一致：<br/>
+  示意图层均为教学用途，非测绘精度；底图与灾害数据图层来源见各案例档案。
+</footer>
+</body>
+</html>
