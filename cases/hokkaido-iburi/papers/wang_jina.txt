@@ -1,0 +1,256 @@
+Title: Landslide Disasters Caused by the 2018 Eastern Iburi Earthquake in Hokkaido Japan and the Countermeasures to Completely Prevent the Similar Disasters in the Future
+
+URL Source: https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23
+
+Published Time: 2023
+
+Markdown Content:
+## Abstract
+
+The catastrophic 2018 Hokkaido Eastern Iburi Earthquake triggered thousands of shallow liquefied landslides in pyroclastic fall deposits one day after the passage of Typhoon Jebi. The landslides were highly mobile and had long runouts. This study reports novel findings pertaining to distinctive properties of the widely distributed, weathered Plinian Ta-d tephra deposit from Tarumae volcano and their impact on the spatial clustering of the Iburi landslides. Distribution of the landslides is positively correlated with the spatial distribution of the Ta-d tephra. Liquefaction occurred in the weathered Ta-d pumice that has lower soil strength than other local pumice units, despite the absence of unconfined groundwater. The volumetric soil moisture content of weathered Ta-d pumice is very high (> 90%) and exceeds other soil layers, regardless of precipitation variation. The presence of hydrated halloysite was confirmed by X-ray diffraction. The halloysite enhances the shaking-triggered liquefaction because it maintains weathered Ta-d pumice in a highly saturated and exceedingly loose state, even in the absence of unconfined groundwater.
+
+### Similar content being viewed by others
+
+![Image 1](https://media.springernature.com/w215h120/springer-static/image/art%3A10.1007%2Fs10346-021-01656-y/MediaObjects/10346_2021_1656_Fig1_HTML.png)
+
+![Image 2](https://media.springernature.com/w215h120/springer-static/image/art%3A10.1186%2Fs40677-024-00303-7/MediaObjects/40677_2024_303_Fig1_HTML.png)
+
+![Image 3](https://media.springernature.com/w92h120/springer-static/cover-hires/book/978-3-031-11898-2?as=webp)
+
+## 1 Introduction
+
+A magnitude (Mj) 6.7 earthquake occurred on 6 September 2018 at a depth of approximately 35 km in the central and eastern Iburi regions of Hokkaido in Northern Japan. The reported damage included 41 fatalities, 691 injured persons, and 1,016 completely collapsed houses. The Japan Meteorological Agency (JMA) designated this earthquake the 2018 Hokkaido Eastern Iburi Earthquake (Fujiwara et al. [2019](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR2 "Fujiwara S, Nakano T, Morishita Y, Kobayashi T, Yarai H, Une H, Hayashi K (2019) Detection and interpretation of local surface deformation from the 2018 Hokkaido Eastern Iburi Earthquake using ALOS-2 SAR data. Earth Planets Space 71:64")). Most of the landslides (5627 failures) occurred intensively between the epicenter and the station that recorded the highest peak ground acceleration (No. HKD 127, Japan). Hundreds of aftershocks followed the main shock. Moreover, in Iburi region, there is a high possibility of earthquakes occurring in the future. Effective countermeasure works are required for sustainable management and disaster mitigation in the study area.
+
+## 2 Study Area and Geological Settings
+
+Hokkaido is located in one of the most tectonically active regions in the world. It is subjected to westward subduction of the Pacific Plate and convergence between the North American and Eurasian Plates (Kimura [1994](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR6 "Kimura G (1994) The latest cretaceous-early paleogene rapid growth of accretionary complex and exhumation of high pressure series metamorphic rocks in Northwestern Pacific margin. J Geophys Res Solid Earth 99(B11):22147–22164"); Tamaki et al. [2010](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR10 "Tamaki M, Kusumoto S, Itoh Y (2010) Formation and deformation processes of late paleogene sedimentary basins in southern central Hokkaido, Japan: paleomagnetic and numerical modeling approach. Island Arc 19(2):243–258")). More specifically, due to the collision of the Northeast Honshu Arc-Japan Trench and the Kuril Arc-Trench, Hokkaido presents complex tectonic associations and geological features (Arita et al. [1998](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR1 "Arita K, Ikawa T, Ito T, Yamamoto A, Saito M, Nishida Y, Satoh H, Kimura G, Watanabe T, Ikawa T, Kuroda T (1998) Crustal structure and tectonics of the Hidaka Collision Zone, Hokkaido (Japan), revealed by vibroseis seismic reflection and gravity surveys. Tectonophysics 290(3–4):197–210")). Numerous earthquakes have occurred along the southwestern region of the Kuril Trench, such as the 1993 Mw 7.6 Kushiro-Oki earthquake, the 1994 MJMA 8.1 Hokkaido-Toho-Oki earthquake, and the 2003 Mw 8.3 Tokachi-Oki earthquake (Arita et al. [1998](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR1 "Arita K, Ikawa T, Ito T, Yamamoto A, Saito M, Nishida Y, Satoh H, Kimura G, Watanabe T, Ikawa T, Kuroda T (1998) Crustal structure and tectonics of the Hidaka Collision Zone, Hokkaido (Japan), revealed by vibroseis seismic reflection and gravity surveys. Tectonophysics 290(3–4):197–210"); Okamura et al. [2008](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR8 "Okamura Y, Tsujino T, Arai K, Sasaki T, Satake K, Joshima M (2008) Fore arc structure and plate boundary earthquake sources along the southwestern Kuril subduction zone. J Geophys Res Solid Earth 113(B6)")). The Hidaka Collision Zone, which is an area of deformation characterized by right-lateral strike-slip movement in central Hokkaido, consists of five belts, i.e., the Sorachi-Yezo Belt (SY), the Idonnappu Belt (ID), the Hidaka Belt (HD), the Yubetsu Belt (YB), and the Tokoro Belt (TB) (Fig. [1](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig1)) (Kimura [1983](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR5 "Kimura G (1983) Collision tectonics in Hokkaido and Sakhalin. Accretion tectonics in the Circum-Pacific regions 123–134")). Their ages range from the Late Jurassic to Paleogene (Kimura [1983](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR5 "Kimura G (1983) Collision tectonics in Hokkaido and Sakhalin. Accretion tectonics in the Circum-Pacific regions 123–134")). The study area is situated at the frontal fold and thrust belt created by the westward vergence of the Hidaka Mountains (Ozaki and Taku [2014](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR7 "Ozaki M, Taku K (2014) 1:200,000 land geological map in the Ishikari depression and its surrounding area with explanatory note. Seamless Geoinformation of coastal zone Bsouthern coastal zone of the Ishikari depression, seamless geological map of costal zone S-4, Geological Survey of Japan ALST")) and extending to an adjoining lowland terrace (Ishikari Depression). Faults and active faults in this region are extremely developed with near north-south strikes, especially at the Eastern Boundary Fault Zone of the Ishikari Lowland (Fig. [2](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig2)).
+
+**Fig. 1**
+
+[![Image 4: figure 1](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-16898-7_23/MediaObjects/525824_1_En_23_Fig1_HTML.png)](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/1)
+
+Simplified tectonic setting and geochronology around Hokkaido. Tectonic divisions are modified after Kimura ([1994](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR6 "Kimura G (1994) The latest cretaceous-early paleogene rapid growth of accretionary complex and exhumation of high pressure series metamorphic rocks in Northwestern Pacific margin. J Geophys Res Solid Earth 99(B11):22147–22164")), Arita et al. ([1998](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR1 "Arita K, Ikawa T, Ito T, Yamamoto A, Saito M, Nishida Y, Satoh H, Kimura G, Watanabe T, Ikawa T, Kuroda T (1998) Crustal structure and tectonics of the Hidaka Collision Zone, Hokkaido (Japan), revealed by vibroseis seismic reflection and gravity surveys. Tectonophysics 290(3–4):197–210")), Takashima et al. ([2002](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR11 "Takashima R, Nishi H, Yoshida T (2002) Geology, petrology and tectonic setting of the Late Jurassic ophiolite in Hokkaido, Japan. J Asian Earth Sci 21(2):197–215")), Zhang et al. ([2019](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR14 "Zhang S, Li R, Wang F, Iio A (2019) Characteristics of landslides triggered by the 2018 Hokkaido Eastern Iburi earthquake, Northern Japan. Landslides 16(9):1691–1708")). Plates boundaries are derived from U.S. Geological Survey. Geochronologic map is classified based on 1:200,000 geological map of Japan from Geological Survey of Japan, AIST
+
+[Full size image](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/1)
+
+**Fig. 2**
+
+[![Image 5: figure 2](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-16898-7_23/MediaObjects/525824_1_En_23_Fig2_HTML.png)](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/2)
+
+Geological setting of the study area. Geological units and (active) faults are categorized based on the 1:200,000 seamless geological map published by the Geological Survey of Japan, AIST. The descriptions of geological units (such as N2sn, Hsr, Q3tl, and Q3vp) are listed in Table [1](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Tab1)
+
+[Full size image](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/2)
+
+The main part of the Eastern Boundary Fault Zone of the Ishikari Lowland originates from Bibai and ends at Abira, Yufutsu, with a convex curve distribution striking from NNE/SSW to NNW/SSE. Two reverse active fault zones (behavioral segments) of the Eastern Boundary Fault Zone of the Ishikari Lowland (i.e., the Yufutsu faults and the Maoi faults) run across the study area. Another active fault, the Karumai behavioral segment, is located southwest to the epicenter of the Iburi earthquake (Fig. [2](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig2)).
+
+Two major faults, the Atsuma and Biratori faults, with a general NNW/SSE trend, are in the central study area. Eighteen geological units (including water) were classified based on a 1:200,000 seamless geological map and the Seamless Geoinformation of Coastal Zone “Southern Coastal Zone of the Ishikari Depression” (Ozaki and Taku [2014](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR7 "Ozaki M, Taku K (2014) 1:200,000 land geological map in the Ishikari depression and its surrounding area with explanatory note. Seamless Geoinformation of coastal zone Bsouthern coastal zone of the Ishikari depression, seamless geological map of costal zone S-4, Geological Survey of Japan ALST")) published by the Geological Survey of Japan, AIST. The outcropped strata in the area are dominated by Neogene and Quaternary marine and non-marine sedimentary rocks and Late Pleistocene non-alkaline pyroclastic flow rocks (Ozaki and Taku [2014](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR7 "Ozaki M, Taku K (2014) 1:200,000 land geological map in the Ishikari depression and its surrounding area with explanatory note. Seamless Geoinformation of coastal zone Bsouthern coastal zone of the Ishikari depression, seamless geological map of costal zone S-4, Geological Survey of Japan ALST")). The eastern part is characterized by rugged terrain along with high elevations and presents complex lithologic characteristics. The main strata of the eastern area are represented by Eocene to Oligocene coal-bearing fluvial and marine sedimentary rocks, Early Miocene to Middle Miocene mudstone, sandstone, and alternating beds of sandstone and mudstone with conglomerate and tuff, and Late Cretaceous marine muddy turbidite and mudstone. In addition, ultramafic rocks and Early to Middle Miocene mafic plutonic rocks (which may indicate complex tectonic movement) are also scattered in the vicinity. The hilly terrain is mainly derived from Tarumae Caldera. At least three cyclothemic interbedded layers, i.e., Tarumae-d pyroclastic fall deposits, Tarumae-c pyroclastic fall deposits and Tarumae-a, b pyroclastic flow deposits were determined (Tajika et al. [2016](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR9 "Tajika J, Ohtsu S, Inui T (2016) Interior structure and sliding process of landslide body composed of stratified pyroclastic fall deposits at the Apporo 1 archaeological site, southeastern margin of the Ishikari Lowland, Hokkaido, Northern Japan. J Geol Soc Japan 122(1):23–35")). The nethermost layer comprised paleosol (Ta-d loam) and Tarumae-d pyroclastic fall deposits (8–9 ka), including lithic fragments (Ta-d1) and pumice fall (Ta-d2). Middle humus and Tarumae-c pyroclastic fall deposits (2.5–3 ka) constituted the second layer. Humic surface soil, Tarumae-a pyroclastic fall deposits, and Tarumae-b pyroclastic fall deposits at the top make up the surface layer (Tajika et al. [2016](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR9 "Tajika J, Ohtsu S, Inui T (2016) Interior structure and sliding process of landslide body composed of stratified pyroclastic fall deposits at the Apporo 1 archaeological site, southeastern margin of the Ishikari Lowland, Hokkaido, Northern Japan. J Geol Soc Japan 122(1):23–35")). The total depth of the pyroclastic tephra deposits distributed in the study area above is approximately 4–5 m (Yamagishi and Yamazaki [2018](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR13 "Yamagishi H, Yamazaki F (2018) Landslides by the 2018 Hokkaido Iburi-Tobu Earthquake on September 6. Landslides 15(12):2521–2524")). The central study area is underlain by Middle Miocene to Pliocene mudstone, siltstone, sandstone, and conglomerate. The western part is located in the Ishikari Lowland and consists of Late Pleistocene to Holocene fluvial deposits and Late Pleistocene non-alkaline pyroclastic flow rocks.
+
+To better understand the general features of the study area and to evaluate the effect of primary and triggering factors on landsliding, three terms in addition to the aforementioned CA (class area), LSN (landslide number), and LSA (landslide area) are introduced in this study. These are TLSN (total landslide number), TLSA (total landslide area), and TCA (total class area). Another two indexes, i.e., LSAP (percentage of landslide area) and CAP (class area percentage), in addition to the above-mentioned LSNP (landslide number percentage) and LC (landslide concentration), are also described herein. LSNP (LSAP) represents the percentage of number (area) of landslides in one class. LC shows the landslide density of certain class. CAP is the area percentage of one class to the total classes (Table [1](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Tab1)).
+
+**Table 1 Classification of geological units and coseismic landslides that occurred in each unit**
+
+[Full size table](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/tables/1)
+
+## 3 Coseismic Landslides Generated by Iburi Earthquake
+
+Based on the field investigation, the Iburi landslides are mainly shallow translational landslides with planar slip surfaces. Most landslides are characterized by high mobility and long run-out distances, and almost all the upper slip surfaces are exposed. The shallow landslides began from the collapse of the gully head, incorporated a vast sliding mass along the valley, heaped irregularly at the gully mouth, and ruined several houses and drainage system (Fig. [3](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig3)a–d). These figures illustrate the soil composition of the landslide in the right flank and in the scarp integrated sliding body. The left-hand side of the scarp, which is located near the ridge of the hill slope and did not collapse due to its shallower dip angle, exhibits a stratigraphic sequence of pyroclastic deposits originating from the Tarumai Volcano. Isopach contour map and field investigation show that Ta-b (AD 1667), Ta-c (ca. 2.5 ka), and Ta-d (ca. 9 ka), with two layers of interbedded Andosols, indicating that this material corresponds to the pale-brown, clay-rich deposit found on the scarp. The thicknesses of Ta-d, En-a and Spfa-1 pyroclastic fall deposits are 0.3–1.0 m, 0.1–1.0 m and 3–4 m respectively. The top layer has a gray-colored fine humic surface with a depth of about 300 mm. The middle layer is composed of middle humus and Tarumae-c pyroclastic fall deposits formed about 2000 years ago, while the bottom layer is composed of brownish and grayish pumice. The grain size of the bottom layer decreases from the lower to upper part. The potential sliding surface is located in the grayish-green dense pumice deposited about 9000 years ago. The soil composition is closely related to the historic eruption and repose of the Tarumae Volcano (Tajika et al. [2016](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR9 "Tajika J, Ohtsu S, Inui T (2016) Interior structure and sliding process of landslide body composed of stratified pyroclastic fall deposits at the Apporo 1 archaeological site, southeastern margin of the Ishikari Lowland, Hokkaido, Northern Japan. J Geol Soc Japan 122(1):23–35")), and most coseismic landslides occurred in the interface between Ta-d pumice layers. It is discovered through the field reconnaissance that the sliding mass moved along the planar interface of the Ta-d pumice and the underlying paleosol. Sliding zone liquefaction and grain crushing occurred within the saturated pumice layers during the down-slope motion. The crushed and liquified pumice layers spread in the deposition area and resulted in the extension of the upper sliding mass in horizontal directions. The slope angle after failure remains unchanged as the pyroclastic fall deposits were evenly deposited on the original slope surface. A sharp-free face appears at the scarp and creates a high possibility of retrogressive slope failure due to future seismic oscillation. According to Kameda et al. ([2019](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR4 "Kameda J, Kamiya H, Masumoto H, Morisaki T, Hiratsuka T, Inaoi C (2019) Fluidized landslides triggered by the liquefaction of subsurface volcanic deposits during the 2018 Iburi–Tobu earthquake, Hokkaido. Sci Rep 9(13119)")), the clay-rich Ta-d layer including halloysite-bearing soils acted as the sole weak and failure plane within the volcanic deposits covering the slopes (Fig. [4](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig4)). The liquefaction and fluidization of this specific horizon provided the prerequisite conditions for the seismic triggering of the recent landslides.
+
+**Fig. 3**
+
+[![Image 6: figure 3](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-16898-7_23/MediaObjects/525824_1_En_23_Fig3_HTML.png)](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/3)
+
+Isopach map of pyroclastic fall deposits (Ta-a, Ta-b, Ta-c, Ta-d, En-a and Spfa-1) and field investigation on sliding surface (general view: **a**–**d**, and soil profiling: **e** and **f**)
+
+[Full size image](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/3)
+
+**Fig. 4**
+
+[![Image 7: figure 4](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-16898-7_23/MediaObjects/525824_1_En_23_Fig4_HTML.png)](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/4)
+(cross section modified from Zhang et al. [2019](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR14 "Zhang S, Li R, Wang F, Iio A (2019) Characteristics of landslides triggered by the 2018 Hokkaido Eastern Iburi earthquake, Northern Japan. Landslides 16(9):1691–1708"); Wang et al. [2021](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR12 "Wang F, Zhang S, Li R, Zhou R, Auer A, Ohira H, Dai Z, Inui T (2021) Hydrated halloysite: the pesky stuff responsible for a cascade of landslides triggered by the 2018 Iburi earthquake, Japan. Landslides 18(8):2869–2880"))
+
+Schematic cross-section of pyroclastic fall deposits in study area based on XRD patterns for air-dried (blue lines) and heated (red lines) samples. Hy = halloysite, Qz = quartz, Pl = plagioclase, Po = portlandite
+
+[Full size image](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/4)
+
+## 4 Soil Properties of Ta-d Unit
+
+Although most recent studies have noted the widespread association of Iburi landslides with the Ta-d unit, there has been limited examination of the mechanical and hydrological properties of this deposit. To this end, we carried out a series of in-situ investigations (trench observation, in-situ volumetric soil moisture content (Wv) measurement, and hardness testing) and laboratory tests (grain size analysis, water content measurement, and void ratio testing) on the pyroclastic fall deposits comprising the sliding mass and sliding zone. Based on soil physical properties, the Ta-d unit can be subdivided into four subunits, i.e., pumice with ash (Ta-d P&A), high liquid limit volcanic cohesive soil (Ta-d VH2), medium gravely soil (Ta-d MG), and coarse sandy soil (Ta-d CS). A representative stratigraphic section and stratigraphic column depicting soil composition of the Iburi landslides is illustrated in Fig. [5](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig5). Grain size analysis shows that Ta-d pumice has a significant clay content, with a peak of > 20% in Ta-d VH2 (Fig. [5](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig5)), whereas clay-sized particles are virtually absent in other layers (even in humus or paleosols). Moreover, Ta-d VH2 must have maintained a nearly fully saturated state during the Iburi earthquake, as Wv reaches a peak of approximately 100% in Ta-d VH2 (Fig. [5](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig5)). To verify the nearly fully saturated state of Ta-d VH2, the Wv measurement of watermelon and pear were conducted in laboratory as well. For easy comparison, the Wvs of watermelon and pear measurement were tested with the volumetric soil moisture sensors (SE-STEWD-3-WET) those were applied in the Wv measurement of the Ta-d VH2 and all tests were repeated five times. Similarly, the maximum and minimum values were excluded. The Wv of watermelon ranges from 84.6 to 94.4%, and the Wv of pear fluctuates between 85.3 and 94.4%. This means the water content of Ta-d VH2 is even higher than that of watermelon. The high Wv thus not only indicates a high saturation degree of Ta-d VH2, but also signifies a loose state. Similarly, the highest water content value was also observed in undisturbed soil in Ta-d VH2. The high degree of saturation of Ta-d VH2 fully explains the high mobility of the Iburi landslides, one of their striking features. In addition to high saturation, low soil strength is a property favorable to slope failure. Uniaxial compression strength values obtained in hardness tests reach their minimum (almost zero) in Ta-d VH2, indicating extremely low soil strength (Fig. [6](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig6)). Void ratios of undisturbed soils were also tested, and the highest void ratio of eight was identified in Ta-d pumice (Fig. [6](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig6)). The Ta-d MG subunit is mainly composed of relatively sound pumice grains with highest void ratio. In summary, Fig. [6](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig6) shows how very low uniaxial compression strength coincides with very high Wv in Ta-d VH2, along with high vesicularity. This combination indicates that Ta-d VH2 existed in a highly saturated and loose state with low soil strength, facilitating the widespread occurrence of the Iburi landslides.
+
+**Fig. 5**
+
+[![Image 8: figure 5](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-16898-7_23/MediaObjects/525824_1_En_23_Fig5_HTML.png)](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/5)
+(modified from Wang et al. [2021](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR12 "Wang F, Zhang S, Li R, Zhou R, Auer A, Ohira H, Dai Z, Inui T (2021) Hydrated halloysite: the pesky stuff responsible for a cascade of landslides triggered by the 2018 Iburi earthquake, Japan. Landslides 18(8):2869–2880"))
+
+**a** Representative stratigraphic section at the crown of LS1 and **b** stratigraphic column showing locations of in-situ monitoring sensors
+
+[Full size image](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/5)
+
+**Fig. 6**
+
+[![Image 9: figure 6](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-16898-7_23/MediaObjects/525824_1_En_23_Fig6_HTML.png)](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/6)
+(modified from Wang et al. [2021](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR12 "Wang F, Zhang S, Li R, Zhou R, Auer A, Ohira H, Dai Z, Inui T (2021) Hydrated halloysite: the pesky stuff responsible for a cascade of landslides triggered by the 2018 Iburi earthquake, Japan. Landslides 18(8):2869–2880"))
+
+Soil geotechnical properties along the stratigraphic section at the crown of LS1: **a** Grain size analysis, **b** Volumetric soil moisture content, and **c** Uniaxial compressive strength
+
+[Full size image](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/6)
+
+## 5 Countermeasure Works
+
+Since earthquake occurrence in Hokkaido is frequent, it is estimated that the similar phenomenon of rapid and long runout landslides will be triggered by earthquake in the same area again (Hua et al. [2019](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR3 "Hua Y, Zhao D, Xu Y, Wang Z (2019) Arc-arc collision caused the 2018 Eastern Iburi earthquake (M 6.7) in Hokkaido, Japan. Sci Rep 9(13914)"); Kameda et al. [2019](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#ref-CR4 "Kameda J, Kamiya H, Masumoto H, Morisaki T, Hiratsuka T, Inaoi C (2019) Fluidized landslides triggered by the liquefaction of subsurface volcanic deposits during the 2018 Iburi–Tobu earthquake, Hokkaido. Sci Rep 9(13119)")). How to protect the local people from the landslide disaster, and how to keep the facilities safe during the earthquake are big questions to be answered by the local administration agency. Considering the earthquake of the same intensity or higher will occur again, and the weathering of the volcanic ashes will go deeper, if no action is taken to change the current geological and geomorphological condition, the same disaster will certainly happen in the future. Photos in Fig. [7](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23#Fig7) show the slopes after removing the surficial volcanic ashes. This kind of work has been conducted in the area covered by volcanic ashes including Ta-d, which has potential to become to slide and threaten the safety of people and infrastructures. It is a rare case over the world, and it is of high value to learn from it.
+
+**Fig. 7**
+
+[![Image 10: figure 7](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-16898-7_23/MediaObjects/525824_1_En_23_Fig7_HTML.png)](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/7)
+
+The photos showing the slopes after removing the surficial volcanic ashes
+
+[Full size image](https://link.springer.com/chapter/10.1007/978-3-031-16898-7_23/figures/7)
+
+## 6 Conclusions
+
+This study is based on the field investigations on concurrent failure of Iburi landslides in Ta-d, and a series of causative tracing studies were then carried out systematically. The positive correlation between spatial clustering of Iburi landslides and the spatial distribution of the Ta-d pumice verifies the crucial role of the Ta-d unit on Iburi landslide distribution from a macroscopic point of view. The causative-tracing study concerning the prevalent occurrence of Iburi landslides in Ta-d led to the recognition of Ta-d and the discovery of its distinguishing properties. Further exploration of the reason for the generation of distinguishing properties of Ta-d, especially the high saturation, led to our most important finding in this work: the high saturation results from the water-conservation or water-absorption of Ta-d, rather than the preceding rainfall recorded during our long-term monitoring. The water-conservation or water-absorption of Ta-d is rationalized by the occurrence of halloysite. This work argues against the previously stated influence of preceding precipitation on the Iburi landslides and emphasizes the role of distinguishable properties of certain pyroclastic fall deposits on coseismic landslides, even though coseismic landslides are unquestionably affected by factors such as seismic shaking, topography, geological context, and tectonic assembly, among others. Moreover, the correlation analysis between tephra dispersal and coseismic landslide distribution, combined with discovery of halloysite and its potential role in slope destabilization, provides new thoughts for land use management, and geo-hazard risk assessment and reduction, especially in volcanic terranes at active margins world-wide.
+
+## References
+
+*   Arita K, Ikawa T, Ito T, Yamamoto A, Saito M, Nishida Y, Satoh H, Kimura G, Watanabe T, Ikawa T, Kuroda T (1998) Crustal structure and tectonics of the Hidaka Collision Zone, Hokkaido (Japan), revealed by vibroseis seismic reflection and gravity surveys. Tectonophysics 290(3–4):197–210
+
+[Article](https://doi.org/10.1016%2FS0040-1951%2898%2900018-3)[Google Scholar](https://scholar.google.com/scholar_lookup?&title=Crustal%20structure%20and%20tectonics%20of%20the%20Hidaka%20Collision%20Zone%2C%20Hokkaido%20%28Japan%29%2C%20revealed%20by%20vibroseis%20seismic%20reflection%20and%20gravity%20surveys&journal=Tectonophysics&volume=290&issue=3%E2%80%934&pages=197-210&publication_year=1998&author=Arita%2CK&author=Ikawa%2CT&author=Ito%2CT&author=Yamamoto%2CA&author=Saito%2CM&author=Nishida%2CY&author=Satoh%2CH&author=Kimura%2CG&author=Watanabe%2CT&author=Ikawa%2CT&author=Kuroda%2CT)
+
+*   Fujiwara S, Nakano T, Morishita Y, Kobayashi T, Yarai H, Une H, Hayashi K (2019) Detection and interpretation of local surface deformation from the 2018 Hokkaido Eastern Iburi Earthquake using ALOS-2 SAR data. Earth Planets Space 71:64
+
+[Article](https://link.springer.com/article/10.1186/s40623-019-1046-2)[Google Scholar](https://scholar.google.com/scholar_lookup?&title=Detection%20and%20interpretation%20of%20local%20surface%20deformation%20from%20the%202018%20Hokkaido%20Eastern%20Iburi%20Earthquake%20using%20ALOS-2%20SAR%20data&journal=Earth%20Planets%20Space&volume=71&publication_year=2019&author=Fujiwara%2CS&author=Nakano%2CT&author=Morishita%2CY&author=Kobayashi%2CT&author=Yarai%2CH&author=Une%2CH&author=Hayashi%2CK)
+
+*   Hua Y, Zhao D, Xu Y, Wang Z (2019) Arc-arc collision caused the 2018 Eastern Iburi earthquake (M 6.7) in Hokkaido, Japan. Sci Rep 9(13914)
+
+[Google Scholar](https://scholar.google.com/scholar?&q=Hua%20Y%2C%20Zhao%20D%2C%20Xu%20Y%2C%20Wang%20Z%20%282019%29%20Arc-arc%20collision%20caused%20the%202018%20Eastern%20Iburi%20earthquake%20%28M%206.7%29%20in%20Hokkaido%2C%20Japan.%20Sci%20Rep%209%2813914%29)
+
+*   Kameda J, Kamiya H, Masumoto H, Morisaki T, Hiratsuka T, Inaoi C (2019) Fluidized landslides triggered by the liquefaction of subsurface volcanic deposits during the 2018 Iburi–Tobu earthquake, Hokkaido. Sci Rep 9(13119)
+
+[Google Scholar](https://scholar.google.com/scholar?&q=Kameda%20J%2C%20Kamiya%20H%2C%20Masumoto%20H%2C%20Morisaki%20T%2C%20Hiratsuka%20T%2C%20Inaoi%20C%20%282019%29%20Fluidized%20landslides%20triggered%20by%20the%20liquefaction%20of%20subsurface%20volcanic%20deposits%20during%20the%202018%20Iburi%E2%80%93Tobu%20earthquake%2C%20Hokkaido.%20Sci%20Rep%209%2813119%29)
+
+*   Kimura G (1983) Collision tectonics in Hokkaido and Sakhalin. Accretion tectonics in the Circum-Pacific regions 123–134
+
+[Google Scholar](https://scholar.google.com/scholar?&q=Kimura%20G%20%281983%29%20Collision%20tectonics%20in%20Hokkaido%20and%20Sakhalin.%20Accretion%20tectonics%20in%20the%20Circum-Pacific%20regions%20123%E2%80%93134)
+
+*   Kimura G (1994) The latest cretaceous-early paleogene rapid growth of accretionary complex and exhumation of high pressure series metamorphic rocks in Northwestern Pacific margin. J Geophys Res Solid Earth 99(B11):22147–22164
+
+[Article](https://doi.org/10.1029%2F94JB00959)[Google Scholar](https://scholar.google.com/scholar_lookup?&title=The%20latest%20cretaceous-early%20paleogene%20rapid%20growth%20of%20accretionary%20complex%20and%20exhumation%20of%20high%20pressure%20series%20metamorphic%20rocks%20in%20Northwestern%20Pacific%20margin&journal=J%20Geophys%20Res%20Solid%20Earth&volume=99&issue=B11&pages=22147-22164&publication_year=1994&author=Kimura%2CG)
+
+*   Ozaki M, Taku K (2014) 1:200,000 land geological map in the Ishikari depression and its surrounding area with explanatory note. Seamless Geoinformation of coastal zone Bsouthern coastal zone of the Ishikari depression, seamless geological map of costal zone S-4, Geological Survey of Japan ALST
+
+[Google Scholar](https://scholar.google.com/scholar?&q=Ozaki%20M%2C%20Taku%20K%20%282014%29%201%3A200%2C000%20land%20geological%20map%20in%20the%20Ishikari%20depression%20and%20its%20surrounding%20area%20with%20explanatory%20note.%20Seamless%20Geoinformation%20of%20coastal%20zone%20Bsouthern%20coastal%20zone%20of%20the%20Ishikari%20depression%2C%20seamless%20geological%20map%20of%20costal%20zone%20S-4%2C%20Geological%20Survey%20of%20Japan%20ALST)
+
+*   Okamura Y, Tsujino T, Arai K, Sasaki T, Satake K, Joshima M (2008) Fore arc structure and plate boundary earthquake sources along the southwestern Kuril subduction zone. J Geophys Res Solid Earth 113(B6)
+
+[Google Scholar](https://scholar.google.com/scholar?&q=Okamura%20Y%2C%20Tsujino%20T%2C%20Arai%20K%2C%20Sasaki%20T%2C%20Satake%20K%2C%20Joshima%20M%20%282008%29%20Fore%20arc%20structure%20and%20plate%20boundary%20earthquake%20sources%20along%20the%20southwestern%20Kuril%20subduction%20zone.%20J%20Geophys%20Res%20Solid%20Earth%20113%28B6%29)
+
+*   Tajika J, Ohtsu S, Inui T (2016) Interior structure and sliding process of landslide body composed of stratified pyroclastic fall deposits at the Apporo 1 archaeological site, southeastern margin of the Ishikari Lowland, Hokkaido, Northern Japan. J Geol Soc Japan 122(1):23–35
+
+[Article](https://doi.org/10.5575%2Fgeosoc.2015.0037)[Google Scholar](https://scholar.google.com/scholar_lookup?&title=Interior%20structure%20and%20sliding%20process%20of%20landslide%20body%20composed%20of%20stratified%20pyroclastic%20fall%20deposits%20at%20the%20Apporo%201%20archaeological%20site%2C%20southeastern%20margin%20of%20the%20Ishikari%20Lowland%2C%20Hokkaido%2C%20Northern%20Japan&journal=J%20Geol%20Soc%20Japan&volume=122&issue=1&pages=23-35&publication_year=2016&author=Tajika%2CJ&author=Ohtsu%2CS&author=Inui%2CT)
+
+*   Tamaki M, Kusumoto S, Itoh Y (2010) Formation and deformation processes of late paleogene sedimentary basins in southern central Hokkaido, Japan: paleomagnetic and numerical modeling approach. Island Arc 19(2):243–258
+
+[Article](https://doi.org/10.1111%2Fj.1440-1738.2009.00698.x)[Google Scholar](https://scholar.google.com/scholar_lookup?&title=Formation%20and%20deformation%20processes%20of%20late%20paleogene%20sedimentary%20basins%20in%20southern%20central%20Hokkaido%2C%20Japan%3A%20paleomagnetic%20and%20numerical%20modeling%20approach&journal=Island%20Arc&volume=19&issue=2&pages=243-258&publication_year=2010&author=Tamaki%2CM&author=Kusumoto%2CS&author=Itoh%2CY)
+
+*   Takashima R, Nishi H, Yoshida T (2002) Geology, petrology and tectonic setting of the Late Jurassic ophiolite in Hokkaido, Japan. J Asian Earth Sci 21(2):197–215
+
+[Article](https://doi.org/10.1016%2FS1367-9120%2802%2900028-7)[Google Scholar](https://scholar.google.com/scholar_lookup?&title=Geology%2C%20petrology%20and%20tectonic%20setting%20of%20the%20Late%20Jurassic%20ophiolite%20in%20Hokkaido%2C%20Japan&journal=J%20Asian%20Earth%20Sci&volume=21&issue=2&pages=197-215&publication_year=2002&author=Takashima%2CR&author=Nishi%2CH&author=Yoshida%2CT)
+
+*   Wang F, Zhang S, Li R, Zhou R, Auer A, Ohira H, Dai Z, Inui T (2021) Hydrated halloysite: the pesky stuff responsible for a cascade of landslides triggered by the 2018 Iburi earthquake, Japan. Landslides 18(8):2869–2880
+
+[Article](https://link.springer.com/article/10.1007/s10346-021-01656-y)[Google Scholar](https://scholar.google.com/scholar_lookup?&title=Hydrated%20halloysite%3A%20the%20pesky%20stuff%20responsible%20for%20a%20cascade%20of%20landslides%20triggered%20by%20the%202018%20Iburi%20earthquake%2C%20Japan&journal=Landslides&volume=18&issue=8&pages=2869-2880&publication_year=2021&author=Wang%2CF&author=Zhang%2CS&author=Li%2CR&author=Zhou%2CR&author=Auer%2CA&author=Ohira%2CH&author=Dai%2CZ&author=Inui%2CT)
+
+*   Yamagishi H, Yamazaki F (2018) Landslides by the 2018 Hokkaido Iburi-Tobu Earthquake on September 6. Landslides 15(12):2521–2524
+
+[Article](https://link.springer.com/article/10.1007/s10346-018-1092-z)[Google Scholar](https://scholar.google.com/scholar_lookup?&title=Landslides%20by%20the%202018%20Hokkaido%20Iburi-Tobu%20Earthquake%20on%20September%206&journal=Landslides&volume=15&issue=12&pages=2521-2524&publication_year=2018&author=Yamagishi%2CH&author=Yamazaki%2CF)
+
+*   Zhang S, Li R, Wang F, Iio A (2019) Characteristics of landslides triggered by the 2018 Hokkaido Eastern Iburi earthquake, Northern Japan. Landslides 16(9):1691–1708
+
+[Article](https://link.springer.com/article/10.1007/s10346-019-01207-6)[Google Scholar](https://scholar.google.com/scholar_lookup?&title=Characteristics%20of%20landslides%20triggered%20by%20the%202018%20Hokkaido%20Eastern%20Iburi%20earthquake%2C%20Northern%20Japan&journal=Landslides&volume=16&issue=9&pages=1691-1708&publication_year=2019&author=Zhang%2CS&author=Li%2CR&author=Wang%2CF&author=Iio%2CA)
+
+[Download references](https://citation-needed.springer.com/v2/references/10.1007/978-3-031-16898-7_23?format=refman&flavour=references)
+
+## Acknowledgements
+
+We express our sincere gratitude to J. Bo, P. Li, X. Li (Institute of Disaster Prevention, China), F. Ji (Chengdu University of Technology, China), A. Iio, J. Furuyama, E. Yokota, P. Dhungana (Shimane University, Japan) for their support during field work. We acknowledge support from the local government and geological museum in Atsuma, Hokkaido, Japan.
+
+## Author information
+
+### Authors and Affiliations
+
+1.   College of Civil Engineering, Tongji University, Shanghai, 20092, China
+
+Fawu Wang&Kounghoon Nam
+
+Authors
+
+1.   Fawu Wang
+2.   Kounghoon Nam
+
+### Corresponding author
+
+Correspondence to [Fawu Wang](mailto:wangfw@tongji.edu.cn).
+
+## Editor information
+
+### Editors and Affiliations
+
+1.   International Consortium on Landslides, Kyoto, Japan
+
+Kyoji Sassa
+
+2.   International Consortium on Landslides, Kyoto, Japan
+
+Kazuo Konagai
+
+3.   Department of Civil and Environmental Engineering, California State University, Fullerton, Fullerton, CA, USA
+
+Binod Tiwari
+
+4.   Faculty of Civil Engineering, University of Rijeka, Rijeka, Croatia
+
+Željko Arbanas
+
+5.   National Institute of Maritime, Port and Aviation Technology, Port and Airport Research Institute, Yokosuka, Japan
+
+Shinji Sassa
+
+## Rights and permissions
+
+**Open Access** This chapter is licensed under the terms of the Creative Commons Attribution 4.0 International License ([http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/)), which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license and indicate if changes were made.
+
+The images or other third party material in this chapter are included in the chapter's Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the chapter's Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder.
+
+[Reprints and permissions](https://s100.copyright.com/AppDispatchServlet?publisherName=SpringerNature&orderBeanReset=true&orderSource=SpringerLink&title=Landslide%20Disasters%20Caused%20by%20the%202018%20Eastern%20Iburi%20Earthquake%20in%20Hokkaido%20Japan%20and%20the%20Countermeasures%20to%20Completely%20Prevent%20the%20Similar%20Disasters%20in%20the%20Future&author=Fawu%20Wang%2C%20Kounghoon%20Nam&contentID=10.1007%2F978-3-031-16898-7_23&copyright=The%20Author%28s%29&publication=eBook&publicationDate=2023&startPage=305&endPage=313&imprint=The%20Author%28s%29&oa=CC%20BY)
+
+## Copyright information
+
+© 2023 The Author(s)
+
+## About this chapter
+
+[![Image 11: Check for updates. Verify currency and authenticity via CrossMark](blob:http://localhost/df43c82f6cb6dcd2a87db38f317bf9f2)](https://crossmark.crossref.org/dialog/?doi=10.1007/978-3-031-16898-7_23)
+
+### Cite this chapter
+
+Wang, F., Nam, K. (2023). Landslide Disasters Caused by the 2018 Eastern Iburi Earthquake in Hokkaido Japan and the Countermeasures to Completely Prevent the Similar Disasters in the Future. In: Sassa, K., Konagai, K., Tiwari, B., Arbanas, Ž., Sassa, S. (eds) Progress in Landslide Research and Technology, Volume 1 Issue 1, 2022. Progress in Landslide Research and Technology. Springer, Cham. https://doi.org/10.1007/978-3-031-16898-7_23
+
+### Download citation
+
+*   [.RIS](https://citation-needed.springer.com/v2/references/10.1007/978-3-031-16898-7_23?format=refman&flavour=citation "Download this article's citation as a .RIS file")
+*   [.ENW](https://citation-needed.springer.com/v2/references/10.1007/978-3-031-16898-7_23?format=endnote&flavour=citation "Download this article's citation as a .ENW file")
+*   [.BIB](https://citation-needed.springer.com/v2/references/10.1007/978-3-031-16898-7_23?format=bibtex&flavour=citation "Download this article's citation as a .BIB file")
+
+*   DOI: https://doi.org/10.1007/978-3-031-16898-7_23
+
+*   Published: 11 January 2023
+
+*   Publisher Name: Springer, Cham
+
+*   Print ISBN: 978-3-031-16897-0
+
+*   Online ISBN: 978-3-031-16898-7
+
+*   eBook Packages: [Earth and Environmental Science](https://link.springer.com/search?facet-content-type=%22Book%22&package=11646&facet-start-year=2023&facet-end-year=2023)[Earth and Environmental Science (R0)](https://link.springer.com/search?facet-content-type=%22Book%22&package=43711&facet-start-year=2023&facet-end-year=2023)
+
+### Keywords

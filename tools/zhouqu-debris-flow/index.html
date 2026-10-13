@@ -58,6 +58,18 @@
     padding: 10px 12px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.3); font-size: 12px; line-height: 1.7;
   }
   #legend .bar { width: 150px; height: 10px; border-radius: 3px; background: linear-gradient(to right, rgb(122,196,122), rgb(198,208,120), rgb(190,150,100), rgb(160,110,80), rgb(235,235,235)); }
+  /* 影像对比模式 */
+  #cmp-divider {
+    position: absolute; top: 0; bottom: 0; width: 4px; background: #fff;
+    box-shadow: 0 0 6px rgba(0,0,0,.6); cursor: ew-resize; z-index: 1200; display: none;
+  }
+  .cmp-chip {
+    position: absolute; top: 60px; z-index: 1200; background: rgba(38,50,56,.9);
+    color: #fff; padding: 5px 10px; border-radius: 6px; font-size: 12px; display: none;
+  }
+  #cmp-chip-l { left: 352px; }
+  #cmp-chip-r { right: 12px; }
+  .cmp-btn.on { background: #1565c0 !important; color: #fff; }
   .leaflet-container { font: inherit; }
   @media (max-width: 720px) {
     #panel { width: 100%; right: 0; height: 45%; top: auto; }
@@ -102,7 +114,8 @@
     <p><b>这是什么？</b></p>
     <p>Hello-ai-GIS 项目的第一个教学工具：用一张交互地图，带学生解构 2010 年甘肃舟曲"8·8"特大泥石流的成因。</p>
     <p class="warn">⚠️ 地图上的沟道、流域边界、城区范围均为依据公开文献绘制的<b>教学示意</b>，并非精确测绘数据。精确数据请见仓库 cases/zhouqu/ 档案中列出的官方来源。</p>
-    <p><b>底图与地形</b>：CartoDB 街道图 / Esri 卫星影像；地形晕渲由 AWS 开放高程瓦片在浏览器端实时计算。</p>
+    <p><b>底图与数据</b>：高德街道图 / 高德卫星影像（国内可直接访问，替换原来无法显示的 CartoDB / Esri）；Bing 卫星影像用于双源对比（其瓦片元数据显示拍摄于 2012–2023 年，县城区域为 2023 年左右）；地形晕渲由 AWS 开放高程瓦片在浏览器端实时计算；城镇建筑轮廓来自 Overture Maps（融合 OSM 与 Microsoft ML 成果的真实数据）。</p>
+    <p class="warn">⚠️ 以上免费卫星影像均<b>不是灾前（2010-08-08 之前）影像</b>。三眼峪泥石流的白色疤痕在两期影像中仍清晰可见，但真正的灾前高分影像需使用 Google Earth Pro 的"历史影像"功能查看。</p>
     <p><b>使用条件</b>：需联网加载底图；推荐 Chrome / Edge 浏览器。</p>
     <p><b>开源</b>：MIT License，教师可自由用于课堂教学。</p>
   </div>
@@ -110,6 +123,9 @@
 
 <div id="map"></div>
 <div id="measure-status"></div>
+<div id="cmp-divider"></div>
+<div id="cmp-chip-l" class="cmp-chip">◀ Bing 卫星（瓦片元数据：2012–2023 年拍摄）</div>
+<div id="cmp-chip-r" class="cmp-chip">重建后现状 · 高德卫星影像 ▶</div>
 
 <div id="legend">
   <b>图例</b><br/>
@@ -117,22 +133,45 @@
   <span style="color:#f57c00">▨</span> 流域/堆积范围（示意）<br/>
   <span style="color:#6d4c41">▬</span> 白龙江（示意）<br/>
   <span style="color:#c62828">▣</span> 县城城区（示意）<br/>
+  <span style="background:#e91e63;color:#e91e63">▨</span> 城镇建筑轮廓（真实：Overture Maps）<br/>
   ● 沟口/崩塌体　<span style="color:#0d47a1">◉</span> 观测点<br/>
   <div class="bar"></div>
   地形晕渲：低 → 高（约 1200–3828 m）
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="zq_buildings.js"></script>
 <script>
 /* ================= 基础地图 ================= */
 var CENTER = [33.83, 104.37];
 var map = L.map('map', { center: CENTER, zoom: 13, minZoom: 10, maxZoom: 17 });
 
-var osm = L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors © CARTO', maxZoom: 19
+/* ---- 高德底图（国内可直接访问，替换原 CartoDB / Esri） ---- */
+var gdSub = ['1', '2', '3', '4'];
+var gdStreet = L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+  subdomains: gdSub, attribution: '© 高德地图', maxZoom: 18
 });
-var esriImg = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-  attribution: 'Esri World Imagery', maxZoom: 18
+var gdImg = L.tileLayer('https://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}', {
+  subdomains: gdSub, attribution: '© 高德地图（卫星影像·现状）', maxZoom: 18
+});
+
+/* ---- Bing 卫星影像（quadkey 协议；瓦片元数据显示拍摄于 2012–2023 年） ---- */
+var BingLayer = L.TileLayer.extend({
+  getTileUrl: function (coords) {
+    var q = '';
+    for (var z = coords.z; z > 0; z--) {
+      var b = 0, m = 1 << (z - 1);
+      if ((coords.x & m) !== 0) b++;
+      if ((coords.y & m) !== 0) b += 2;
+      q += b;
+    }
+    var subs = this.options.subdomains;
+    var s = subs[Math.abs(coords.x + coords.y) % subs.length];
+    return this._url.replace('{q}', q).replace('{s}', s);
+  }
+});
+var bingImg = new BingLayer('https://ecn.t{s}.tiles.virtualearth.net/tiles/a{q}.jpeg?g=1', {
+  subdomains: ['0', '1', '2', '3'], attribution: 'Bing Maps（灾后早期影像）', maxZoom: 18, maxNativeZoom: 17
 });
 
 /* ---- 地形晕渲：AWS 开放高程瓦片（Terrarium）浏览器端实时渲染 ---- */
@@ -207,9 +246,8 @@ var DEMLayer = L.GridLayer.extend({
 });
 var dem = new DEMLayer({ maxNativeZoom: 14, maxZoom: 17, attribution: '地形: AWS Open Data (Terrarium)' });
 dem.addTo(map);
-map.removeLayer(osm);
 
-var baseMaps = { "地形晕渲（DEM）": dem, "街道图 (CartoDB)": osm, "卫星影像 (Esri)": esriImg };
+var baseMaps = { "地形晕渲（DEM）": dem, "街道图（高德）": gdStreet, "卫星影像（高德·现状）": gdImg };
 L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
 
 /* ================= 案例示意图层 ================= */
@@ -257,6 +295,94 @@ var caseLayers = L.layerGroup([
   markerSanyan, markerLuojia, markerTown, markerRain
 ]).addTo(map);
 
+/* ================= 城镇建筑轮廓（真实数据：Overture Maps，gzip+base64 内嵌） ================= */
+var bldgLyr = L.geoJSON(null, {
+  style: { color: '#880e4f', weight: 0.4, fillColor: '#e91e63', fillOpacity: 0.5 },
+  onEachFeature: function (f, l) {
+    l.bindTooltip('城镇建筑（Overture Maps：OSM + Microsoft ML 融合数据）', { sticky: true });
+  }
+});
+(function decodeBuildings() {
+  try {
+    var bin = atob(ZQ_BLDG_B64);
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    new Response(new Response(bytes).body.pipeThrough(new DecompressionStream('gzip')))
+      .arrayBuffer()
+      .then(function (buf) {
+        bldgLyr.addData(JSON.parse(new TextDecoder('utf-8').decode(buf)));
+      })
+      .catch(function () {});
+  } catch (e) { /* 旧浏览器不支持 DecompressionStream 时仅不显示该层 */ }
+})();
+
+var overlayMaps = {
+  '案例示意图层（沟道/流域/城区）': caseLayers,
+  '城镇建筑轮廓（真实）': bldgLyr
+};
+L.control.layers(baseMaps, overlayMaps, { position: 'topright' }).addTo(map);
+
+/* ================= 灾后影像对比（Bing 灾后早期 ↔ 高德现状） ================= */
+var cmpState = { active: false, prevBase: null };
+var cmpDivEl = document.getElementById('cmp-divider');
+var chipL = document.getElementById('cmp-chip-l');
+var chipR = document.getElementById('cmp-chip-r');
+var mapEl = document.getElementById('map');
+
+function setCmpClip(x) {
+  x = Math.max(0, Math.min(mapEl.clientWidth, x));
+  var el = gdImg.getContainer();
+  if (el) el.style.clipPath = 'inset(0 0 0 ' + x + 'px)';
+  cmpDivEl.style.left = (mapEl.offsetLeft + x) + 'px';
+}
+function enterCompare() {
+  cmpState.active = true;
+  cmpState.prevBase = map.hasLayer(dem) ? dem : (map.hasLayer(gdStreet) ? gdStreet : gdImg);
+  map.removeLayer(cmpState.prevBase);
+  bingImg.addTo(map);
+  gdImg.addTo(map);
+  setCmpClip(mapEl.clientWidth / 2);
+  cmpDivEl.style.display = 'block';
+  chipL.style.display = 'block';
+  chipR.style.display = 'block';
+  document.getElementById('cmp-toggle').classList.add('on');
+}
+function exitCompare() {
+  cmpState.active = false;
+  map.removeLayer(bingImg);
+  map.removeLayer(gdImg);
+  gdImg.getContainer() && (gdImg.getContainer().style.clipPath = '');
+  cmpState.prevBase && cmpState.prevBase.addTo(map);
+  cmpDivEl.style.display = 'none';
+  chipL.style.display = 'none';
+  chipR.style.display = 'none';
+  document.getElementById('cmp-toggle').classList.remove('on');
+}
+var CmpCtrl = L.Control.extend({
+  options: { position: 'topleft' },
+  onAdd: function () {
+    var div = L.DomUtil.create('div', 'measure-btn cmp-btn');
+    div.id = 'cmp-toggle';
+    div.innerHTML = '🛰';
+    div.title = '卫星影像对比：Bing（2012–2023）↔ 高德现状，拖动分隔条';
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.on(div, 'click', function (e) {
+      L.DomEvent.stop(e);
+      cmpState.active ? exitCompare() : enterCompare();
+    });
+    return div;
+  }
+});
+map.addControl(new CmpCtrl());
+
+var cmpDragging = false;
+cmpDivEl.addEventListener('mousedown', function (e) { e.preventDefault(); cmpDragging = true; });
+document.addEventListener('mousemove', function (e) {
+  if (!cmpDragging || !cmpState.active) return;
+  setCmpClip(e.clientX - mapEl.getBoundingClientRect().left);
+});
+document.addEventListener('mouseup', function () { cmpDragging = false; });
+
 /* ================= 四要素教学模式 ================= */
 var CHART = '';
 (function buildRainChart() {
@@ -298,7 +424,7 @@ var FACTORS = {
   },
   human: {
     title: '要素四 ｜ 人类活动：与泥石流"抢地盘"',
-    html: '舟曲县城沿白龙江谷地扩张，部分建筑<b>侵占了泥石流进入白龙江的行洪通道</b>；长期植被破坏也加剧了水土流失。当"墙"一般的泥石流冲出山口时，首当其冲的正是建在通道上的房屋。三眼峪自1823年以来已发生十多次重大泥石流——<b>同一地点反复成灾</b>。',
+    html: '舟曲县城沿白龙江谷地扩张，部分建筑<b>侵占了泥石流进入白龙江的行洪通道</b>；长期植被破坏也加剧了水土流失。打开<b>「城镇建筑轮廓（真实）」</b>图层（2691 栋建筑，Overture Maps 真实数据），可以清楚看到建筑沿白龙江、并深入三眼峪沟口一带密集分布。当"墙"一般的泥石流冲出山口时，首当其冲的正是建在通道上的房屋。三眼峪自1823年以来已发生十多次重大泥石流——<b>同一地点反复成灾</b>。',
     q: '如果你是规划师：县城还能建在哪里？已建的怎么办？',
     bounds: [[33.765,104.345],[33.805,104.395]]
   }
@@ -311,6 +437,10 @@ function resetStyles() {
 }
 resetStyles();
 
+function ensureBase(lyr) {
+  [dem, gdStreet, gdImg].forEach(function (b) { if (map.hasLayer(b) && b !== lyr) map.removeLayer(b); });
+  if (!map.hasLayer(lyr)) lyr.addTo(map);
+}
 var factorBtns = document.querySelectorAll('.factor-btns button');
 factorBtns.forEach(function (btn) {
   btn.addEventListener('click', function () {
@@ -319,7 +449,7 @@ factorBtns.forEach(function (btn) {
     var f = FACTORS[btn.dataset.factor];
     resetStyles();
     if (btn.dataset.factor === 'terrain') {
-      if (!map.hasLayer(dem)) { map.removeLayer(osm); map.removeLayer(esriImg); dem.addTo(map); }
+      ensureBase(dem);
       sanyanyuLine.setStyle({weight:6, opacity:1}); luojiayuLine.setStyle({weight:6, opacity:1});
     }
     if (btn.dataset.factor === 'source') {
@@ -329,7 +459,8 @@ factorBtns.forEach(function (btn) {
     if (btn.dataset.factor === 'rain') markerRain.openPopup();
     if (btn.dataset.factor === 'human') {
       town.setStyle(townHi);
-      if (!map.hasLayer(osm)) { map.removeLayer(dem); map.removeLayer(esriImg); osm.addTo(map); }
+      ensureBase(gdStreet);
+      if (!map.hasLayer(bldgLyr)) bldgLyr.addTo(map);
     }
     document.getElementById('factor-card').innerHTML =
       '<h3>' + f.title + '</h3><div>' + f.html + '</div>' +

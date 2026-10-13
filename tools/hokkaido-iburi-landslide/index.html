@@ -95,8 +95,9 @@
     <p><b>这是什么？</b></p>
     <p>Hello-ai-GIS 第二个教学工具：用<b>真实数据图层</b>解构 2018 年 9 月 6 日北海道胆振东部地震（Mw 6.6，札幌东南约 40 km）诱发的山体滑坡。与舟曲工具配合使用，对比"暴雨型"与"地震型"地质灾害。</p>
     <p class="warn">⚠️ 喜多耕一的数据为<b>个人基于地理院航空影像的判读</b>，非官方成果；国土地理院分布图未经现场踏查。所有数据仅用于课堂教学。</p>
-    <p><b>图层来源</b>：<br/>· 国土地理院：标准/淡色地图、赤色立体地图、震后正射影像、斜面崩壊・堆積分布図<br/>· GitHub koukita/2018_09_06_atumatyou：崩壊 6116 处 / 堆积 1512 处矢量<br/>· USGS：震中、PGA/MMI 等值线、余震序列</p>
+    <p><b>图层来源</b>：<br/>· 国土地理院：标准/淡色地图、赤色立体地图、震后正射影像、斜面崩壊・堆積分布図<br/>· 産総研（AIST）：20万分之一日本无缝地质图 V2（タイル＋第四纪火山物像素高亮）<br/>· 気象庁：平成30年台風第21号気象速報（アメダス累计雨量，9/3–9/5）；等值线为站点插值示意<br/>· GitHub koukita/2018_09_06_atumatyou：崩壊 6116 处 / 堆积 1512 处矢量<br/>· USGS：震中、PGA/MMI 等值线、余震序列</p>
     <p><b>使用条件</b>：需联网加载；推荐 Chrome / Edge。</p>
+    <p><b>文献资料包</b>：核心论文中文翻译＋原始图片已整理至 <code>cases/hokkaido-iburi/papers/</code>（Kameda 2019、千木良 2019、Wang &amp; Nam 2023、王功輝 2019、石丸 2021、産総研 GSJ 紧急解说，共 6 篇，附导读 README 与阅读顺序建议）。</p>
     <p><b>开源</b>：MIT License。</p>
   </div>
 </div>
@@ -110,7 +111,12 @@
   <span style="color:#8d6e63">▨</span> 土砂堆积（喜多，<span id="st-taiseki">加载中…</span>）<br/>
   <span style="color:#ff9800">▨</span> 崩壊・堆積分布図（国土地理院）<br/>
   <span style="color:#a5e1ff">—</span> PGA 等值线（%g）　<span style="color:#90f2ff">—</span> MMI 等值线<br/>
-  ○ 余震 M≥3.5　<span style="font-size:15px;color:#d32f2f">★</span> 震中　● 主要地点
+  ○ 余震 M≥3.5　<span style="font-size:15px;color:#d32f2f">★</span> 震中　● 主要地点<br/>
+  <hr style="border:none;border-top:1px solid #ccc;margin:6px 0"/>
+  <span style="color:#42a5f5">▨</span> 雨量等值线（9/3–9/5 累计 mm，站点插值示意）<br/>
+  <span style="color:#1e88e5">●</span> アメダス雨量站（気象庁）<br/>
+  <span style="background:#ff6ec7;color:#ff6ec7">▨</span> 第四纪火山喷发物高亮（产総研地质图）<br/>
+  <span style="background:#d9b38c;color:#d9b38c">▨</span> 无缝地质图 V2（产総研 1:20万）
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -231,6 +237,107 @@ fetch('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime
     });
   }).catch(function () {});
 
+/* ================= 前期降雨：気象庁アメダス站点 + 插值等值线 ================= */
+var rainStations = [
+  { name: '大滝（伊達市）', lat: 42.670, lon: 141.078, v: 150.0 },
+  { name: 'カルルス（壮瞥町）', lat: 42.517, lon: 141.107, v: 144.5 },
+  { name: '森野（安平町）', lat: 42.630, lon: 141.247, v: 140.0 },
+  { name: '小金湯（札幌市北区）', lat: 42.963, lon: 141.217, v: 105.0 },
+  { name: '支笏湖畔（千歳市）', lat: 42.772, lon: 141.407, v: 100.0 },
+  { name: '手稲山（札幌市手稲区）', lat: 43.083, lon: 141.202, v: 87.5 },
+  { name: '厚真町', lat: 42.730, lon: 141.888, v: null },
+  { name: '苫小牧市', lat: 42.623, lon: 141.547, v: null }
+];
+function rainColor(v) {
+  if (v === null) return '#9e9e9e';
+  if (v >= 150) return '#0d47a1';
+  if (v >= 125) return '#1e88e5';
+  if (v >= 100) return '#42a5f5';
+  return '#90caf9';
+}
+var rainStLyr = L.layerGroup(rainStations.map(function (s) {
+  var label = s.v === null
+    ? '<b>' + s.name + '</b><br/>累计雨量 ＜71.5 mm<br/><span style="color:#888;font-size:12px">（未进道内前十；気象庁速報）</span>'
+    : '<b>' + s.name + '</b><br/>9/3–9/5 累计雨量 <b>' + s.v + ' mm</b><br/><span style="color:#888;font-size:12px">気象庁アメダス速報值</span>';
+  return L.circleMarker([s.lat, s.lon], {
+    radius: s.v === null ? 5 : 7, color: '#fff', weight: 1.5,
+    fillColor: rainColor(s.v), fillOpacity: 0.95
+  }).bindTooltip(label, { direction: 'top' });
+}));
+
+/* 等值线为多边形嵌套，按 6 个实测站点手工光滑插值（示意性质，已标注） */
+var rainIsoLyr = L.geoJSON({
+  type: 'FeatureCollection',
+  features: [
+    { type: 'Feature', properties: { level: 75, label: '≥75 mm' },
+      geometry: { type: 'Polygon', coordinates: [[[141.14,42.40],[141.08,42.48],[140.82,42.62],[140.68,42.78],[140.70,42.92],[140.80,43.04],[140.92,43.13],[141.08,43.16],[141.24,43.14],[141.38,43.08],[141.48,42.98],[141.54,42.86],[141.52,42.76],[141.44,42.70],[141.36,42.60],[141.30,42.48],[141.22,42.40],[141.14,42.40]]] } },
+    { type: 'Feature', properties: { level: 100, label: '≥100 mm' },
+      geometry: { type: 'Polygon', coordinates: [[[141.08,42.42],[140.86,42.50],[140.76,42.62],[140.74,42.75],[140.80,42.87],[140.90,42.95],[141.02,43.00],[141.16,43.02],[141.30,42.99],[141.40,42.92],[141.46,42.82],[141.48,42.74],[141.40,42.68],[141.32,42.62],[141.26,42.52],[141.18,42.44],[141.08,42.42]]] } },
+    { type: 'Feature', properties: { level: 125, label: '≥125 mm' },
+      geometry: { type: 'Polygon', coordinates: [[[141.02,42.44],[140.90,42.52],[140.85,42.62],[140.86,42.72],[140.92,42.82],[141.02,42.86],[141.14,42.84],[141.26,42.78],[141.32,42.70],[141.30,42.60],[141.22,42.50],[141.12,42.44],[141.02,42.44]]] } },
+    { type: 'Feature', properties: { level: 150, label: '≥150 mm' },
+      geometry: { type: 'Polygon', coordinates: [[[140.98,42.58],[140.95,42.62],[140.97,42.70],[141.03,42.76],[141.10,42.77],[141.15,42.73],[141.16,42.66],[141.12,42.60],[141.05,42.58],[140.98,42.58]]] } }
+  ]
+}, {
+  style: function (f) {
+    var lv = f.properties.level;
+    return {
+      color: rainColor(lv), weight: 2, dashArray: '5 4', fillColor: rainColor(lv),
+      fillOpacity: lv >= 150 ? 0.35 : lv >= 125 ? 0.3 : lv >= 100 ? 0.25 : 0.18
+    };
+  },
+  onEachFeature: function (f, l) {
+    l.bindTooltip('9/3–9/5 累计雨量 ' + f.properties.label + '（站点插值示意）', { sticky: true });
+  }
+});
+
+/* ================= 地质：産総研 20万分之一无缝地质图 V2 ================= */
+var aistGeo = L.tileLayer('https://gbank.gsj.jp/seamless/v2/api/1.3.1/tiles/{z}/{y}/{x}.png', {
+  attribution: '産総研：20万分の1日本シームレス地質図V2', maxZoom: 18, maxNativeZoom: 13, opacity: 0.75
+});
+
+/* 第四纪火山喷发物（溶岩・火砕岩 / 大规模火砕流 / 风成火山灰）图例色集 */
+var VOLC_COLORS = [[112,101,143],[118,115,157],[123,129,171],[129,143,186],[134,157,200],[157,91,29],[168,107,23],[170,63,126],[173,78,135],[176,93,144],[176,122,26],[179,108,153],[182,123,163],[185,137,29],[193,151,32],[203,72,0],[208,113,0],[209,135,132],[213,146,138],[213,148,0],[217,51,50],[218,158,144],[222,169,150],[222,210,102],[224,199,117],[225,187,130],[227,181,156],[231,161,0],[231,192,162],[235,97,97],[236,204,168],[242,155,118],[247,199,7],[249,194,112],[255,182,230],[255,191,225],[255,200,220],[255,208,215],[255,217,210],[255,221,120],[255,226,205],[255,230,255],[255,235,200]];
+var VOLC_SET = {};
+VOLC_COLORS.forEach(function (c) { VOLC_SET[c.join(',')] = true; });
+
+/* 画布像素过滤：把地质图中属于第四纪火山喷发物的像素高亮为品红 */
+var VolcHiLayer = L.GridLayer.extend({
+  createTile: function (coords, done) {
+    var tile = document.createElement('canvas');
+    tile.width = tile.height = 256;
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = function () {
+      try {
+        var c = document.createElement('canvas');
+        c.width = c.height = 256;
+        var cx = c.getContext('2d');
+        cx.drawImage(img, 0, 0);
+        var d = cx.getImageData(0, 0, 256, 256).data;
+        var out = tile.getContext('2d');
+        var im = out.createImageData(256, 256);
+        var p = im.data;
+        for (var i = 0; i < 65536; i++) {
+          var k = i * 4;
+          if (VOLC_SET[d[k] + ',' + d[k+1] + ',' + d[k+2]]) {
+            p[k] = 255; p[k+1] = 40; p[k+2] = 150; p[k+3] = 130;
+          }
+        }
+        out.putImageData(im, 0, 0);
+        done(null, tile);
+      } catch (err) { done(err, tile); }
+    };
+    img.onerror = function () { done(new Error('tile load failed'), tile); };
+    img.src = 'https://gbank.gsj.jp/seamless/v2/api/1.3.1/tiles/' + coords.z + '/' + coords.y + '/' + coords.x + '.png';
+    return tile;
+  }
+});
+var volcHiLyr = new VolcHiLayer({
+  maxZoom: 18, maxNativeZoom: 13,
+  attribution: '産総研无缝地质图V2：第四纪火山喷发物高亮'
+});
+
 /* ================= 震中与标注点 ================= */
 var epicenter = L.marker([42.686, 141.929], {
   icon: L.divIcon({ html: '<div style="font-size:22px;color:#d32f2f;text-shadow:0 0 3px #fff">★</div>', iconSize: [26, 26], iconAnchor: [13, 13] })
@@ -257,9 +364,62 @@ var overlayMaps = {
   'PGA 等值线（USGS）': pgaLyr,
   'MMI 等值线（USGS）': mmiLyr,
   '余震 M≥3.5（USGS）': afLyr,
+  '9/3–9/5 累计雨量等值线（示意）': rainIsoLyr,
+  'アメダス雨量站（気象庁）': rainStLyr,
+  '无缝地质图 V2（産総研）': aistGeo,
+  '第四纪火山喷发物高亮': volcHiLyr,
   '震中与主要地点': L.layerGroup([epicenter, poi])
 };
 L.control.layers(baseMaps, overlayMaps, { position: 'topright', collapsed: true }).addTo(map);
+
+/* ================= 典型地层柱状剖面（综合 Kameda 2019 Fig.2b、千木良 2019、GSJ 2018 模式断面） ================= */
+var STRAT_SVG = '<svg viewBox="0 0 340 470" style="width:100%;max-width:340px;background:#fff;border:1px solid #ddd;border-radius:6px;margin-top:6px">'
++ '<defs>'
++ '<marker id="arrR" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#d32f2f"/></marker>'
++ '<pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#bfa070" stroke-width="1.5"/></pattern>'
++ '</defs>'
+/* 柱状地层 */
++ '<rect x="64" y="30" width="86" height="30" fill="#4e342e"/>'
++ '<rect x="64" y="60" width="86" height="30" fill="#fafafa" stroke="#bbb" stroke-width="0.5"/>'
++ '<rect x="64" y="90" width="86" height="20" fill="#5d4037"/>'
++ '<rect x="64" y="110" width="86" height="40" fill="#efebe9" stroke="#bbb" stroke-width="0.5"/>'
++ '<rect x="64" y="150" width="86" height="115" fill="#cf9a63"/>'
++ '<rect x="64" y="150" width="86" height="36" fill="#b9714a" opacity="0.9"/>'
++ '<rect x="64" y="265" width="86" height="7" fill="#e57373" stroke="#c62828" stroke-width="1"/>'
++ '<rect x="64" y="272" width="86" height="28" fill="#90a4ae"/>'
++ '<circle cx="78" cy="285" r="2.5" fill="#29b6f6"/><circle cx="98" cy="288" r="2.5" fill="#29b6f6"/><circle cx="118" cy="284" r="2.5" fill="#29b6f6"/><circle cx="138" cy="288" r="2.5" fill="#29b6f6"/>'
++ '<rect x="64" y="300" width="86" height="110" fill="#f8d6ad" stroke="#d7b98f" stroke-width="0.5"/>'
++ '<rect x="64" y="300" width="86" height="110" fill="url(#hatch)"/>'
+/* 滑动面 */
++ '<line x1="58" y1="272" x2="152" y2="272" stroke="#d32f2f" stroke-width="2.5" stroke-dasharray="7 4" marker-end="url(#arrR)"/>'
+/* 深度标尺 */
++ '<line x1="58" y1="30" x2="58" y2="330" stroke="#888" stroke-width="1"/>'
++ '<line x1="54" y1="30" x2="64" y2="30" stroke="#888"/><line x1="54" y1="130" x2="64" y2="130" stroke="#888"/><line x1="54" y1="230" x2="64" y2="230" stroke="#888"/><line x1="54" y1="330" x2="64" y2="330" stroke="#888"/>'
++ '<text x="48" y="34" text-anchor="end" font-size="10" fill="#666">0</text>'
++ '<text x="48" y="134" text-anchor="end" font-size="10" fill="#666">1m</text>'
++ '<text x="48" y="234" text-anchor="end" font-size="10" fill="#666">2m</text>'
++ '<text x="48" y="334" text-anchor="end" font-size="10" fill="#666">3m</text>'
+/* 右侧注释 */
++ '<text x="160" y="40" font-size="11" fill="#333">表土・黑土层（Andosol）</text>'
++ '<text x="160" y="70" font-size="11" fill="#333">Ta-b 降下浮石・1667年</text>'
++ '<text x="160" y="94" font-size="11" fill="#333">黑土层</text>'
++ '<text x="160" y="120" font-size="11" fill="#333">Ta-c 降下浮石・约3000年前</text>'
++ '<text x="160" y="150" font-size="11" fill="#333">Ta-d 降下浮石・约9000年前</text>'
++ '<text x="160" y="164" font-size="10" fill="#8d4a2a">（上部红色风化带，脆弱）</text>'
++ '<text x="160" y="240" font-size="10" fill="#555">含水率向下递增，＞100%</text>'
++ '<text x="160" y="268" font-size="11.5" font-weight="bold" fill="#d32f2f">★ 液化滑动面</text>'
++ '<text x="160" y="282" font-size="10" fill="#d32f2f">Ta-d 底部约5cm细粒风化浮石</text>'
++ '<text x="160" y="294" font-size="10" fill="#d32f2f">（埃洛石化，液性指数＞1）</text>'
++ '<text x="160" y="316" font-size="11" fill="#333">含浮石火山灰土／再堆积层</text>'
++ '<text x="160" y="329" font-size="10" fill="#546e7a">（难透水・孔隙水滞留，蓝色水点）</text>'
++ '<text x="160" y="352" font-size="11" fill="#333">基盘：中新世海相泥岩</text>'
++ '<text x="160" y="365" font-size="10" fill="#8a6d3b">（川端层＝1:20万图上 N2_soi）</text>'
++ '<text x="160" y="395" font-size="10" fill="#777">本柱状图覆盖层总厚约2.5–3m，</text>'
++ '<text x="160" y="407" font-size="10" fill="#777">即一次滑坡的整体滑体厚度。</text>'
+/* 底部来源 */
++ '<text x="10" y="442" font-size="9.5" fill="#888">资料来源：Kameda et al. 2019（Sci Rep, Fig.2b）、千木良 et al. 2019（京都大学防災研究所年報 62B）、</text>'
++ '<text x="10" y="455" font-size="9.5" fill="#888">産総研 GSJ（2018）厚真町模式地质断面。论文中文翻译与原始图片：cases/hokkaido-iburi/papers/</text>'
++ '</svg>';
 
 /* ================= 四要素教学模式 ================= */
 var FACTORS = {
@@ -277,17 +437,24 @@ var FACTORS = {
   },
   rain: {
     title: '要素二 ｜ 前期降雨：台风"飞燕"刚刚离开',
-    html: '就在地震前两天（9 月 4 日），<b>台风"飞燕"</b>（日本称"平成30年台風第21号"）掠过日本列岛并给北海道带来大范围降雨，山体土壤接近饱和。孔隙水压力升高使火山灰层抗剪强度大幅降低——<b>同样的震动，干坡可能稳住，湿坡则整片滑走</b>。这与舟曲"干旱后遇暴雨"的机制形成有趣对照。',
-    q: '为什么"地震前一天下过雨"会显著放大滑坡规模？土壤含水量如何影响力学性质？',
-    bounds: [[42.60, 141.55], [42.85, 142.00]],
-    act: function () {}
+    html: '就在地震前两天（9 月 4 日），<b>台风"飞燕"</b>（日本称"平成30年台風第21号"）掠过日本列岛并给北海道带来大范围降雨，山体土壤接近饱和。気象庁アメダス数据显示：9/3–9/5 累计雨量以胆振西部最大——<b>大滝 150 mm、カルルス 144.5 mm、森野（安平町）140 mm</b>，向东北方向递减，厚真町不足 71.5 mm。孔隙水压力升高使火山灰层抗剪强度大幅降低——<b>同样的震动，干坡可能稳住，湿坡则整片滑走</b>。这与舟曲"干旱后遇暴雨"的机制形成有趣对照。',
+    q: '打开「雨量等值线」和「雨量站」图层：降雨最多的地方是滑坡最重的地方吗？这说明"前期降雨"和"触发降雨"分别扮演什么角色？',
+    bounds: [[42.45, 140.85], [43.10, 141.55]],
+    act: function () {
+      if (!map.hasLayer(rainIsoLyr)) rainIsoLyr.addTo(map);
+      if (!map.hasLayer(rainStLyr)) rainStLyr.addTo(map);
+    }
   },
   geo: {
     title: '要素三 ｜ 地质：厚层火山灰的"定时炸弹"',
-    html: '灾区丘陵覆盖着来自樽前山等火山的<b>厚层火山碎屑沉积物（火山灰、浮石）</b>：多孔、松散、易饱水。研究人员指出这次滑坡以<b>震动液化型浅层滑坡</b>为主，常从山脊顶部开始启动，流动性极强。札幌清田区的砂土液化、追分地区的广泛破坏都与这套地层有关。',
-    q: '为什么同样一次地震，基岩山地受灾轻、火山灰丘陵受灾重？地质灾害分析为什么要先看"地下"？',
-    bounds: [[42.62, 141.30], [42.85, 141.85]],
-    act: function () { poi.getLayers()[4].openPopup(); }
+    html: '灾区丘陵覆盖着来自樽前山等火山的<b>厚层火山碎屑沉积物（火山灰、浮石、大规模火砕流堆积）</b>：多孔、松散、易饱水。産総研无缝地质图（1:20万）清楚显示：厚真—安平一带的丘陵几乎整片属于<b>第四纪火山喷发物</b>（粉色高亮区）。野外剖面调查（Kameda 2019；千木良 2019）进一步锁定：滑动面集中在约 9000 年前喷发的 <b>Ta-d 浮石层底部</b>——厚仅约 5 cm、埃洛石化、饱水液化的细粒风化浮石；其上 2–3 m 火山灰整体滑走。札幌清田区的砂土液化、追分地区的广泛破坏都与这套地层有关。<details style="margin-top:10px"><summary style="cursor:pointer;color:#c62828;font-weight:bold">📐 点击查看：吉野—富里典型地层柱状剖面（滑动面在哪里？）</summary><div id="strat-col"></div></details>',
+    q: '打开「无缝地质图」与「第四纪火山喷发物高亮」图层：为什么同样一次地震，基岩山地受灾轻、火山灰丘陵受灾重？地质灾害分析为什么要先看"地下"？',
+    bounds: [[42.60, 141.20], [42.85, 141.95]],
+    act: function () {
+      if (!map.hasLayer(aistGeo)) aistGeo.addTo(map);
+      if (!map.hasLayer(volcHiLyr)) volcHiLyr.addTo(map);
+      poi.getLayers()[4].openPopup();
+    }
   },
   form: {
     title: '要素四 ｜ 地形与形态：从山脊开始的群体滑坡',
@@ -312,6 +479,8 @@ factorBtns.forEach(function (btn) {
     document.getElementById('factor-card').innerHTML =
       '<h3>' + f.title + '</h3><div>' + f.html + '</div>' +
       '<div class="q"><b>🤔 想一想：</b>' + f.q + '</div>';
+    var sc = document.getElementById('strat-col');
+    if (sc) sc.innerHTML = STRAT_SVG;
     map.flyToBounds(f.bounds, { padding: [30, 30], duration: 1.2 });
   });
 });

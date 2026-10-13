@@ -1,0 +1,148 @@
+Title: Fluidized landslides triggered by the liquefaction of subsurface volcanic deposits during the 2018 Iburi–Tobu earthquake, Hokkaido
+
+URL Source: https://www.nature.com/articles/s41598-019-48820-y.pdf
+
+Published Time: Mon, 04 Dec 2023 17:30:10 GMT
+
+Number of Pages: 7
+
+Markdown Content:
+1Scientific Repo RtS | (2019) 9:13119 | https://doi.org/10.1038/s41598-019-48820-y www.nature.com/scientificreports 
+
+# fluidized landslides triggered by the liquefaction of subsurface 
+
+# volcanic deposits during the 2018 
+
+# iburi– tobu earthquake, Hokkaido Jun  Kameda 1, Hiro  Kamiya 2, Hirokazu  Masumoto  3, tomonori  Morisaki 3, toru  Hiratsuka 2 &
+
+chisaki  inaoi 4The 6.6 Mw Iburi–Tobu earthquake struck southern Hokkaido, Japan on 6 September 2018. The 
+
+earthquake triggered widespread slope collapses in the hills near the epicenter, resulting in destructive 
+
+landslides that killed 36 people. Volcanic deposits covering the region slid downhill in a flow-like manner suggestive of fluidized landslides. Here, we report a distinctive example of liquefaction in the field, which could be a prerequisite for the generation of fluidized landslides triggered by large earthquakes. In the scarp of a typical landslide, an altered halloysite-bearing volcanic layer is observed at a level almost coincident with the sliding surface. The layer is intensely undulating and can be divided into an upper clay-rich layer and a lower pumice-rich layer, suggesting that the altered layer had liquefied as a result of the strong coseismic ground motion. The layer had been soaked by heavy rainfall just one day before the earthquake and could have liquefied, producing a weak and slippery plane, resulting in the catastrophic landslides in this area. 
+
+The Iburi–Tobu earthquake of Mw  = 6.6 occurred at 3:07 AM (local time) on 6 September 2018, in southern Hokkaido, Japan (Fig. 1a). The earthquake caused power cuts and destroyed distribution networks across Hokkaido, creating widespread disruption. A total of 41 people were killed during the earthquake, with most of these (36 people) perishing in landslides near the epicenter. The hills in southwestern Hokkaido are widely cov-ered by volcanic deposits, derived from the repeated eruptions of nearby volcanoes such as Tarumai, Eniwa, and Shikotsu 1–4 . In addition to intermittent rainfall over a period of several weeks before the earthquake, Typhoon Jebi caused heavy rainfall on 4 September in this area (Fig. S1), which likely soaked and weakened the volcanic soils. Subsequent earthquake ground motion (with a maximum intensity of 7 on the Japan Meteorology Agency (JMA) intensity scale 5; Fig. S2) might have triggered sudden whole-slope failures 6. Landslides in volcanic deposits are generally characterized by a higher mobility than those in non-volcanic deposits, due to differences in material properties such as granularity, collapsibility and water content 7,8 . The total number of landslides recorded in the area during this period was ~6000 9. Most of the recorded landslides are shallow and show features characteristic of fluidized landslides, such as long runouts of debris on a flat depositional area. Fluidized landslides have been the subject of extensive research because of their serious threat to humans provided by their high velocity and long-distance motility 10–12 . The liquefaction of slope-forming materials by seismic dynamic loading has been offered as a primary cause of earthquake-induced fluidized landslides 13–19 .However, this mechanism has been based primarily on laboratory-based mechanical tests, and direct evidence in the form of natural examples is still lacking. 
+
+> 1
+
+Department of Earth and Planetary Sciences, Faculty of Science, Hokkaido University, N10W8, Kita-ku, Sapporo, 060-0810, Japan. 2Department of Earth and Planetary Sciences, School of Science, Hokkaido University, N10W8, Kita-ku, Sapporo, 060-0810, Japan. 3Earth and Planetary System Science, Department of Natural History Sciences, Graduate School of Science, Hokkaido University, N10W8, Kita-ku, Sapporo, 060-0810, Japan. 4Tomon-chigaku kai, 1-6-1 Nishiwaseda, Shinjuku-ku, Tokyo, 169-8050, Japan. Correspondence and requests for materials should be addressed to J.K. (email: kameda@sci.hokudai.ac.jp )
+
+Received: 15 March 2019 Accepted: 13 August 2019 Published: xx xx xxxx 
+
+# open 2Scientific Repo RtS | (2019) 9:13119 | https://doi.org/10.1038/s41598-019-48820-y www.nature.com/scientificreports www.nature.com/scientificreports/ 
+
+field  investigation of Landslides 
+
+To investigate the mechanism generating the landslides triggered by the Iburi–Tobu earthquake, we conducted a field survey at a typical landslide in the Tomisato area of Atsuma (Fig. 1b,c). At this site, the hillslope has largely collapsed over an area of ~100  m × ~95  m (Fig. 1d), with the material having slid down toward the west with a runout distance of ~150  m. The average slope angle is ~20°, but it increases to 30° near the hilltop. Most of the trees on the displaced mass stand almost vertically or dip only slightly upslope or downslope, indicating that the motion was mostly accommodated by a subsurface sliding layer (Fig. 1e). The slope is covered by soils and vol-canic pyroclastic deposits including scoria, pumice, and ash of various colors including white, pale-brown, and reddish-brown. Below the fragile collapsed debris on the slope, a pale-brown clay-rich material is found covering the basement of the slope (Fig. 1f). The basement, consisting of Neogene marine strata, is rarely eroded at this site. During our field surveys (September–November 2018), we observed that the clay-rich volcanic deposits were often saturated. Moreover, outcrops of the volcanic material found on the slope were striated (Fig. 1f). These observations suggest that the volcanic deposits behaved as a sliding layer during the landslide. The studied landslide has a scarp with a height of 2–3  m on both sides of the landslide margin, which can be traced to a major scarp further up the slope, near the hilltop (Figs 1d and 2a). The left-hand side of the scarp, which is located near the ridge of the hill slope and did not collapse due to its shallower dip angle, exhibits a stratigraphic sequence of pyroclastic deposits originating from the Tarumai Volcano. We identified deposits Ta-b (AD 1667) 3,4 , Ta-c (ca. 2.5 ka), and Ta-d (ca. 9 ka), with two layers of interbedded Andosols (Fig. 2b). The reddish-brown Ta-d deposit is underlain by a pale-brown pumiceous deposit separated by an undulating contact. 
+
+Figure 1.  (a) Locations of the epicenter of the Iburi–Tobu earthquake (red cross) and the study area. ( b)3D view of the hills near Atsuma after the earthquake (produced by the Geographical Survey Institute) 32 . ( c)Close-up photo of the studied landslide (taken on 6 September 2018) 6. Shooting directions of the photos ( d,e)are marked by the dotted arrows. ( d) The slope and paleo-valley after the landslide. The landslide also produced a scarp measuring 2–3 m in height. ( e) Displaced material on the slope. (f ) Close-up photo of the striated clay-rich material that formed the sliding surface. 3Scientific Repo RtS | (2019) 9:13119 | https://doi.org/10.1038/s41598-019-48820-y www.nature.com/scientificreports www.nature.com/scientificreports/ 
+
+Both the reddish-brown and pale-brown pumice grains contain water as confirmed by crushing the grains by hand. The uppermost part of the pale-brown deposit consists of a clay-rich layer measuring several tens of cen-timeters in thickness (Fig. 2b). During our field surveys, the clay-rich material was saturated and resembled the striated mud found on the sliding surface of the slope. Because the layer contained abundant water, it can be clearly identified as a dark layer when viewed from a distance (Fig. 2c, white arrows). The layer has a character-istic undulating appearance and is commonly injected into the upper reddish-brown deposits, suggesting that the layer underwent liquefaction and pressurization. Furthermore, this layer is found at a similar level to that of the sliding surface along almost the entire scarp (Fig. 2c). Below the pale-brown deposit is basement, and the basement and clay-rich layer are locally in direct contact. Similar examples of the pyroclastic deposit sequence, including a disturbed subsurface volcanic layer, were observed at several other landslide locations (Fig. S3). 
+
+Mineralogical and geotechnical properties of volcanic deposits and soils.  X-ray diffraction (XRD) analysis revealed that the major clay components of the basement are smectite, illite, and kaolinite (Fig. 3). These phases are absent in the overlying sequences, with the exception of trace smectite in Ta-b, Ta-c, and the two Andosol layers (Andosol-1 and -2, from top to bottom). The reddish-brown Ta-d layer does not show any trace of clay minerals (Fig. 3); instead, low-crystalline material such as allophane, a common weathering prod-uct in volcanic soils, is found 20–22 . In contrast, the pale-brown pumiceous and clay-rich deposits both contain 
+
+Figure 2.  (a) Overview of the scarp in the Tomisato area. ( b) A sequence of pyroclastic deposits in the scarp with the characteristic undulation of the subsurface volcanic layer. ( c) View of the scarp showing the undulating clay-rich layer (dark layer marked by white arrows) very close to the sliding surface. 4Scientific Repo RtS | (2019) 9:13119 | https://doi.org/10.1038/s41598-019-48820-y www.nature.com/scientificreports www.nature.com/scientificreports/ 
+
+halloysite, which is verified by a peak at ~8.8° under air-dried conditions (black profile) and its shift to ~11.8° under heat-treated conditions (red profile) 23 .The grain size distribution indicates that the basement consists of sandy clay, with ~30% of particles measur-ing <5 μm (i.e., geotechnically classified as the clay fraction; Fig. 4a). The pale-brown clay-rich sample contains a clay fraction of 27%, while the upper Ta-d layer and lower pale-brown pumiceous deposit are sandy gravels containing clay fractions of only 6.3% and 1.1%, respectively. The two Andosol samples are organic sand deposits, but the lower Andosol contains a gravel fraction of 15%. Ta-c and Ta-b are classified as graded and gravelly sands, respectively. The water content of each sample is shown in Fig. 5. The topmost Ta-b shows the lowest water content (~15%), with water content generally increasing stratigraphically downward to values over 100%, and abruptly decreasing to 27% in the basement. The striated mud on the sliding surface also contains abundant water (130%), which is consistent with field observations. The analyzed samples are highly variable in terms of geotechnical properties, as summarized in Table S1. The correlation between the liquid limit and liquidity index of each sample is plotted in a plasticity index chart (Fig. S4). The basement and Ta-c are classified as inorganic clays of low to medium plasticity (CL), while the other samples are located in the MH or OH zones (organic silts and clays of medium–high plasticity or inorganic silts). The liquidity index also shows high variability, ranging from less than 0 to more than 1 (Fig. 5; Table S1). The reddish-brown Ta-d and clay-rich pale-brown deposit show liquidity index values higher than 1, implying that their natural moisture content is high enough for these samples to behave like a fluid. We also tested the rheological behaviors of reconstituted and sieved samples of the clay-rich pale-brown deposit with different water contents, ranging from IL = 1.5 (natural moisture content) to more water-rich states. At high strain rates ( >100–200  s−1), all samples exhibit viscoplastic behaviors described by the Bingham fluid model (i.e., shear stress increases linearly with strain rate after yielding; Fig. 6). At low strain rates ( <~10  s−1), the sample with IL = 1.5 is likely to behave as a high-viscosity Newtonian fluid and the overall flow curve can be described by a bilinear model, which is commonly used to describe debris flows 24 . At higher water contents, the samples start to flow with lower viscosities. These results suggest that the clay-rich, pale-brown material readily flows even under very low shear stress. 
+
+Discussion 
+
+Clay-forming alteration of the volcanic deposits.  In a reference outcrop near the landslide site show-ing the complete succession of volcanic deposits, Ta-d is found to overlie En-a (pumice deposited by the Eniwa volcano at 20 ka), with an Andosol layer separating the two deposits 3,4 . Given the lack of such an Andosol layer below the reddish-brown Ta-d layer in the landslide scarp, the pale-brown deposit can be correlated with the upper reddish-brown deposit (i.e., Ta-d). The difference in color might reflect the more advanced alteration in the lower section of Ta-d, as indicated by the formation of halloysite. Halloysite is produced by weathering in pyroclastic deposits, and occurs after allophane in the weather-ing sequence 20–22 . Halloysite has been identified as one of the principal clay minerals on the failure surfaces of 
+
+Figure 3.  XRD patterns for air-dried (black lines), ethylene-glycolated (blue line), and heat-treated (red lines) samples. Sm  = smectite, Hy  = halloysite, It  = illite, Lt  = laumontite, Kn  = kaolinite, Q  = quartz, Pl  = plagioclase. 5Scientific Repo RtS | (2019) 9:13119 | https://doi.org/10.1038/s41598-019-48820-y www.nature.com/scientificreports www.nature.com/scientificreports/ 
+
+volcanic landslides in Japan 25,26 , Indonesia 27 , and New Zealand 28,29 . At the Tomisato landslide site, halloysite is present in the striated mud sample collected from the sliding surface, indicating that this material corresponds to the pale-brown, clay-rich deposit found on the scarp (Fig. 2b). The absence of volcanic deposits older than the Ta-d layer at the Tomisato landslide suggests that the last land-slide in this area occurred before the eruption of Ta-d (i.e., before 9 ka). During the period between this previous landslide and the more recent event, rainfall would have repeatedly soaked the volcanic deposits. The variation in water content with depth suggests that the basement acts as an impermeable barrier to rain water, possibly due to the presence of smectite (Fig. 5). The fluid-saturated environment created by this barrier enhances the halloysite-forming alteration reaction at the base of the volcanic deposits.           
+
+> 010 20 30 40 50 60 70 80 90 100 0.001 0.01 0.1 110 100 010 20 30 40 50 60 70 80 90 100 0.001 0.01 0.1 110 100 Percent finer by weight Grain size (mm) Grain size (mm) Percent finer by weight basement pumiceous layer clay-rich layer Ta-d (reddish) Andosol-2 Andosol-1 Ta-c Ta-b
+
+(a) (b) 1:2 1:3 1:4 1:1 pumiceous layer clay-rich layer Ta-d (reddish) 
+
+Figure 4.  (a ) Grain-size distribution curves for samples from the Tomisato landslide site. ( b) Grain-size distributions for 1:1, 1:2, 1:3, and 1:4 mixtures of pale-brown clay-rich deposit and pumiceous deposit.           
+
+> Ta-b Ta-c Andosol-01 basement Andosol-02 pumiceous layer clay-rich layer Ta-d striated mud Water content (%) Liquidity index, IL050 100 150 200 -0.5 00.5 11.5 2Water content Liquidity index
+
+Figure 5.  Water content (%) and liquidity index values IL for samples from the Tomisato landslide. 6Scientific Repo RtS | (2019) 9:13119 | https://doi.org/10.1038/s41598-019-48820-y www.nature.com/scientificreports www.nature.com/scientificreports/ 
+
+Possible mechanism of slope destabilization.  Although the slope had been stable for many years, the Iburi–Tobu earthquake triggered its collapse. In general, halloysite-bearing soils exhibit higher peak friction angles than those of soils containing platy clay minerals 28 . Two halloysite-bearing soil samples from Japan yield peak friction angles of 31° and 33° 28 , suggesting that the present slope, which has an average slope angle of ~20°, is stable in an equilibrium state. However, the above-mentioned stratification tends to result in volcanic soil deposits becoming water-saturated, thereby inducing liquefaction and consequent flow slide over the slope. In fact, our observations at the field site indicate that a subsurface volcanic layer was liquefied, causing halloysite-bearing fluids to be squeezed out of pores in the volcanic deposits and subsequently deposited as the clay-rich layer in the scarp. To test this hypothesis, we consider the grain size distributions of the three Ta-d samples. Figure 4b shows grain-size distributions for mixtures of the clay-rich and pumiceous pale-brown Ta-d samples at ratios of 1:1, 1:2, 1:3, and 1:4. The 1:2 to 1:3  mixtures are equivalent to the apparent volume ratio of the two layers as observed in the field (Fig. 2b), and almost exactly reproduce the grain size distribution of the reddish-brown Ta-d (Fig. 4b). This result suggests that the pale-brown Ta-d deposit originally comprised a single layer that separated into the upper clay-rich and lower pumiceous layers as a result of liquefaction. The liquidity index value of the clay-rich Ta-d sample is >1 (Fig. 5), suggesting that the layer readily flows in its natural moisture state. This inference is further supported by our rheometric experiments. Although the liquidity index value of the reddish-brown Ta-d is also >1, it should be noted that geotechnical tests were conducted on samples after sieving to 425 μm. These results are therefore not necessarily representative of the whole sample. It is reasonable to assume that the whole-rock properties of the clay-rich Ta-d deposit are comparable to the experimental results, because this layer consists mainly of particles finer than 425 μm (weight fraction of ~75%; Fig. 4a). In contrast, the reddish-brown Ta-d deposit contains a significant fraction of particles larger than 425 μm; therefore, the bulk-rock properties are expected to differ greatly from those determined using the sieved sample. Several experiments have shown that the addition of coarse grains can increase the yield stress of mud suspensions 30,31 . These results imply that the clay-rich Ta-d layer acted as the sole weak and slippery plane within the volcanic deposits covering the slopes. The liquefaction and fluidization of this specific horizon provided the prerequisite conditions for the seismic triggering of the recent landslides. 
+
+References                                            
+
+> 1. Yamada, S. Studies on the history of volcanic eruptions of alluvium epoch in Hokkaido on the basis of depositional features of the pyroclastics. Monog. Ass. Geol. Collab. Japan .8(1958)
+> 2. Katsui, Y. On the Shikotsu pumice-fall deposit. Special reference to the activity just before the depression of the Shikotsu caldera.
+> Bull. Volcanol. Soc. Japan 2, 33–48 (1959).
+> 3. Furukawa, R. & Nakagawa, M. Geological Map of Tarumae volcano. Geological Survey of Japan (2000).
+> 4. Nakagawa, M. et al . Tephrastratigraphy in Ishikari Lowland, Southwestern Hokkaido: Eruption history of the Shikotsu-Toya volcanic field. Jour. Geol. Soc. Japan 124 , 473–489 (2018).
+> 5. Japan Meteorology Agency, https://www.data.jma.go.jp/svd/eew/data/suikei/201809060308_146/201809060308_146_1.html (2018).
+> 6. Geographical Survey Institute, https://maps.gsi.go.jp/#12/42.770442/141.985660/&base =std&ls =std%7C20180906hokkaido_ atsuma_0906do%7Cexperimental_anno&blend =0&disp =111&lcd =20180906hokkaido_atsuma_0906do&vs =c1j0h0k0l0u0t0z0r 0s0m0f1&d =vl (2018).
+> 7. Hayashi, J. N. & Self, S. A comparison of pyroclastic flow and debris avalanche mobility. Jour. Geophys. Res. 97 , 9063–9071 (1992).
+> 8. Legros, F. The mobility of long runout landslides. Eng. Geol. 63 , 301–331 (2001).
+> 9. Yamagishi, H. & Yamazaki, F. Landslides by the 2018 Hokkaido Iburi-Tobu Earthquake on September 6. Landslides 15 , 2521–2524 (2018).
+> 10. Bishop, A. W. The stability of tips and spoil heaps. Quarterly Jour. Eng. Geol. 6, 335–376 (1973).
+> 11. Eckersley, J. D. Flowslides in stockpiled coal. Eng. Geol. 22 , 13–22 (1985).
+> 12. Sassa, K. Mechanism of flows in granular soils. Proc. GeoEng 2000 , Melbourne, 1671 (2000).
+> 13. Seed, H. B. Liquefaction of saturated sand during cyclic loading. Jour. Soil Mech. Found. Div., ASCE 94 , 105–134 (1966).
+> 050 100 150 200 250 050 100 150 200 250 300 350 400 450 500 Shear stress (Pa) Strain rate (s -1 )
+> IL=1.50
+> IL=1.77
+> IL=1.95
+> IL=2.33 Bingham fluid Newtonian fluid
+
+Figure 6.  Flow curves (strain rate vs. shear stress) for the sieved clay-rich pale-brown deposit sample with various water contents ( IL = 1.50 to 2.33). At high strain rates, all samples exhibit flow characteristics described by the Bingham model (dotted grey lines). At a lower strain rates, the sample with IL = 1.50 behaves as a Newtonian fluid, as shown by the higher slope (i.e., higher Newtonian viscosity; solid grey line). 7Scientific Repo RtS | (2019) 9:13119 | https://doi.org/10.1038/s41598-019-48820-y www.nature.com/scientificreports www.nature.com/scientificreports/ 
+
+14.  Sassa, K. The mechanism starting liquefied landslides and debris flows. Proc. 4th Int. Symp. Landslides, Toronto , 349 (1984). 
+
+15.  Ishihara, K. et al . Liquefaction-induced flowslide in the collapsible loess deposit in Soviet Tajik. Soils Found. 30 , 73–89 (1990). 
+
+16.  Ishihara, K. Liquefaction and flow failure during earthquakes. Geotechnique 43 , 39–46 (1993). 
+
+17.  Iverson, R. M. Debris-flow mobilization from landslides. Rev. Geophys. 35 , 245–296 (1997). 
+
+18.  Sassa, K. et al . Undrained dynamic-loading ringshear apparatus and its application to landslide dynamics. Landslides 1, 7–19 (2004). 
+
+19.  Wang, G. et al . Some fluidized landslides triggered by the 2011 Tohoku Earthquake (Mw 9.0), Japan. Geomorphology 208 , 11–21 (2014). 
+
+20.  Wada, K. Minerals in Soil Environments. Soil Sci. Soc. Am. Madison, Wisconsin, 603 (1977). 
+
+21.  Wada, K. Soils with Variable Charge. New Zealand Society of Soil Science, Lower Hutt, 87 (1980). 
+
+22.  Parfitt, R. L. et al . Weathering sequence of soils from volcanic ash involving allophane and halloysite, New Zealand. Geoderma 29 ,41–57 (1983). 
+
+23.  Moore, D. M. & Reynolds, R. C. Jr. X-ray diffraction and the Identification and Analysis of Clay Minerals. Oxford Univ. Press, New York (1997). 
+
+24.  Imran, J. et al . A numerical model of submarine debris-flow with graphical user interface. Comp. Geosci. 27 , 717–729 (2001). 
+
+25.  Chigira, M. & Yokoyama, O. Weathering profile of non-welded ignimbrite and the water infiltration behavior within it in relation to the generation of shallow landslides. Eng. Geol. 78 , 187–207 (2005). 
+
+26.  Chigira, M. et al . Catastrophic Landslides of Pyroclastics Induced by the 2011 off the Pacific Coast of Tohoku Earthquake. pp 139–147 In: Earthquake-Induced Landslides, Proc. Int. Symp. Earthquake-Induced Landslides, Kiryu, Japan, Springer (2012). 
+
+27.  Nakano, M. et al . Landslides of pumice fall deposits induced by the 2009 Padang earthquake and the formation of halloysite. Japan Geosci. Union Meeting, Chiba, Japan (2013). 
+
+28.  Moon, V. Halloysite behaving badly: geomechanics and slope behaviour of halloysite-rich soils. Clay Miner. 51 , 517–528 (2016). 
+
+29.  Kluger, M. O. et al . A new attraction-detachment model for explaining flow sliding in clay-rich tephras. Geology 45 , 131–134 (2017). 
+
+30.  Ancey, C. & Jorrot, H. Yield stress for particle suspensions within a clay dispersion. Jour. Rheol. 45 , 297–319 (2001). 
+
+31.  Scotto di Santolo, A. et al . Experimental study on the rheological behaviour of debris flow. Nat. Hazards Earth Sys. Sci. 10 , 2507–2514 (2010). 
+
+32.  Geographical Survey Institute, https://maps.gsi.go.jp/index_3d.html?z =15&lat =42.770990617816366&lon =141.95971012 115479&pxsize =2048&ls =std%7C20180906hokkaido_atsuma_0906do&blend =0#&cpx =6.519&cpy =-51.814&cpz =
+
+40.536&cux =0.036&cuy =-0.122&cuz =0.992&ctx =0.000&cty =0.000&ctz =0.000&a =1&b =0&dd =0(2018). 
+
+Acknowledgements 
+
+We thank two anonymous reviewers for their insightful comments and Susanna Falsaperla for editing this paper. This work was supported by a JSPS Grant-in-Aid for Scientific Research (18H0129508). 
+
+Author  contributions 
+
+J.K.: Field survey, laboratory measurements and data analyses, writing the manuscript. H.K: Field survey, laboratory measurements and data analyses. H.M.: Field survey. T.M.: Field survey. T.H.: Field survey. C.I.: Field survey. 
+
+Additional  information 
+
+Supplementary information accompanies this paper at https://doi.org/10.1038/s41598-019-48820-y. 
+
+Competing Interests: The authors declare no competing interests. 
+
+Publisher’s note: Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations. 
+
+Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Cre-ative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons license and your intended use is not per-mitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/. © The Author(s) 2019
