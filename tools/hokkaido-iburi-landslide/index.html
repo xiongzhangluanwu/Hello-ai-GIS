@@ -7,28 +7,29 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
   html, body { height: 100%; margin: 0; font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
-  #map { position: absolute; top: 0; bottom: 0; right: 0; left: 340px; }
+  #map { position: absolute; top: 0; bottom: 0; right: 0; left: 330px; }
   #titlebar {
-    position: absolute; top: 0; left: 0; right: 0; height: 46px; z-index: 1000;
-    background: #263238; color: #fff; display: flex; align-items: center; padding: 0 14px;
-    font-size: 15px; font-weight: bold; box-shadow: 0 1px 4px rgba(0,0,0,.4);
+    position: absolute; top: 0; left: 0; right: 0; height: 44px; z-index: 1000;
+    background: #fff; color: #263238; display: flex; align-items: center; padding: 0 14px;
+    font-size: 15px; font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,.15);
+    border-bottom: 2px solid #1565c0;
   }
-  #titlebar small { font-weight: normal; opacity: .75; margin-left: 10px; font-size: 12px; }
+  #titlebar small { font-weight: normal; opacity: .6; margin-left: 10px; font-size: 12px; }
   #panel {
-    position: absolute; top: 46px; bottom: 0; left: 0; width: 340px; z-index: 999;
-    background: #fafafa; box-shadow: 1px 0 4px rgba(0,0,0,.25); overflow-y: auto; padding: 10px 12px; box-sizing: border-box;
+    position: absolute; top: 44px; bottom: 0; left: 0; width: 330px; z-index: 999;
+    background: #f4f6f8; box-shadow: 1px 0 3px rgba(0,0,0,.12); overflow-y: auto; padding: 10px; box-sizing: border-box;
   }
   .tabs { display: flex; gap: 6px; margin-bottom: 10px; }
-  .tabs button { flex: 1; padding: 8px 0; border: none; border-radius: 6px; cursor: pointer; background: #e0e0e0; font-size: 14px; }
-  .tabs button.active { background: #2e7d32; color: #fff; }
+  .tabs button { flex: 1; padding: 7px 0; border: none; border-radius: 6px; cursor: pointer; background: #e3e7ea; font-size: 14px; color: #455a64; }
+  .tabs button.active { background: #1565c0; color: #fff; }
   .hidden { display: none !important; }
   .factor-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
   .factor-btns button {
-    padding: 12px 4px; border: none; border-radius: 8px; cursor: pointer; font-size: 14px;
-    background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); color: #333;
+    padding: 11px 4px; border: none; border-radius: 8px; cursor: pointer; font-size: 14px;
+    background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.12); color: #37474f;
   }
   .factor-btns button.active { background: #1565c0; color: #fff; }
-  #factor-card { background: #fff; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.15); font-size: 13.5px; line-height: 1.75; }
+  #factor-card { background: #fff; border-radius: 8px; padding: 12px; box-shadow: 0 1px 2px rgba(0,0,0,.1); font-size: 13.5px; line-height: 1.75; }
   #factor-card h3 { margin: 0 0 8px; font-size: 15px; color: #1565c0; }
   #factor-card .q { background: #fff8e1; border-left: 4px solid #ffb300; padding: 8px 10px; border-radius: 4px; margin-top: 10px; }
   #factor-card .q b { color: #e65100; }
@@ -44,18 +45,19 @@
   }
   .measure-btn.on { background: #1565c0; color: #fff; }
   #measure-status {
-    position: absolute; bottom: 18px; left: 352px; z-index: 1000; background: rgba(38,50,56,.92);
+    position: absolute; bottom: 18px; left: 342px; z-index: 1000; background: rgba(38,50,56,.92);
     color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 13px; display: none;
   }
   #legend {
-    position: absolute; bottom: 18px; right: 12px; z-index: 1000; background: rgba(255,255,255,.94);
-    padding: 10px 12px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.3); font-size: 12px; line-height: 1.7;
-    max-height: 46%; overflow-y: auto;
+    position: absolute; bottom: 18px; right: 12px; z-index: 1000; background: rgba(255,255,255,.95);
+    padding: 8px 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.2); font-size: 11.5px; line-height: 1.75;
+    max-height: 48%; overflow-y: auto; min-width: 200px;
   }
+  #legend summary { cursor: pointer; font-weight: bold; font-size: 13px; color: #263238; }
   .leaflet-container { font: inherit; }
   @media (max-width: 720px) {
     #panel { width: 100%; right: 0; height: 45%; top: auto; }
-    #map { left: 0; top: 46px; bottom: 45%; }
+    #map { left: 0; top: 44px; bottom: 45%; }
   }
 </style>
 </head>
@@ -88,6 +90,8 @@
       <li><b>找一找</b>：把底图切换为「震后正射影像（9月6日）」，在厚真町附近找发亮的崩壊裸地和土砂堆积；点击棕色堆积多边形，看看它压埋了森林、道路还是房屋。</li>
       <li><b>想一想</b>：舟曲泥石流是"暴雨扣扳机"，北海道滑坡是"地震扣扳机"。两者的共同前提是什么？这对"防灾该防什么"有什么启示？</li>
       <details><summary>思路提示</summary>共同前提：松散物质 + 陡坡 + 水（孔隙水压力）。启示：既要监测触发因子（暴雨、地震），更要提前识别"装填好的弹药库"——易发区划与土地利用管制。</details>
+      <li><b>辨一辨</b>：图层面板里混进了几类"背景要素"——植生・土地利用（OSM-FR）、水系，以及看起来"有关"的活火山标注。请逐一开关这些图层，判断哪些与本次滑坡<b>直接相关</b>、哪些<b>无关</b>，并说明理由。</li>
+      <details><summary>参考答案</summary>直接相关：地震动（PGA/余震/震中）、前期降雨、火山灰地质、活火山——活火山正是 Ta-d / En-a 等火山灰层的来源，通过"物质基础"间接而关键地相关！无关：植被、土地利用——它们影响的是"灾害后果"（如森林被毁、农田被埋）而非"是否发生"。水系介于两者之间：河谷地形控制了土砂的堆积范围，但河流既不触发滑坡也不决定滑动面位置。教学要点：相关≠"看起来有关"，要追溯"触发—材料—水"的因果链。</details>
     </ol>
   </div>
 
@@ -95,7 +99,7 @@
     <p><b>这是什么？</b></p>
     <p>Hello-ai-GIS 第二个教学工具：用<b>真实数据图层</b>解构 2018 年 9 月 6 日北海道胆振东部地震（Mw 6.6，札幌东南约 40 km）诱发的山体滑坡。与舟曲工具配合使用，对比"暴雨型"与"地震型"地质灾害。</p>
     <p class="warn">⚠️ 喜多耕一的数据为<b>个人基于地理院航空影像的判读</b>，非官方成果；国土地理院分布图未经现场踏查。所有数据仅用于课堂教学。</p>
-    <p><b>图层来源</b>：<br/>· 国土地理院：标准/淡色地图、赤色立体地图、震后正射影像、斜面崩壊・堆積分布図<br/>· 産総研（AIST）：20万分之一日本无缝地质图 V2（タイル＋第四纪火山物像素高亮）<br/>· 気象庁：平成30年台風第21号気象速報（アメダス累计雨量，9/3–9/5）；等值线为站点插值示意<br/>· GitHub koukita/2018_09_06_atumatyou：崩壊 6116 处 / 堆积 1512 处矢量<br/>· USGS：震中、PGA/MMI 等值线、余震序列</p>
+    <p><b>图层来源</b>：<br/>· 国土地理院：标准/淡色地图、赤色立体地图、震后正射影像、崩塌与堆积分布<br/>· 国土地理院矢量瓦片（辨析用）：水系（河川・水域）<br/>· OSM-FR 渲染：植生・土地利用参考（绿色＝森林/植被）<br/>· 気象厅常时观测火山（火山灰来源标注）＋主要地点<br/>· 産総研（AIST）：20万分之一日本无缝地质图 V2（タイル＋第四纪火山物像素高亮）<br/>· 気象庁：平成30年台風第21号気象速報（アメダス累计雨量，9/3–9/5）；等值线为站点插值示意<br/>· GitHub koukita/2018_09_06_atumatyou：崩壊 6116 处 / 堆积 1512 处矢量<br/>· USGS：震中、PGA/MMI 等值线、余震序列</p>
     <p><b>使用条件</b>：需联网加载；推荐 Chrome / Edge。</p>
     <p><b>文献资料包</b>：核心论文中文翻译＋原始图片已整理至 <code>cases/hokkaido-iburi/papers/</code>（Kameda 2019、千木良 2019、Wang &amp; Nam 2023、王功輝 2019、石丸 2021、産総研 GSJ 紧急解说，共 6 篇，附导读 README 与阅读顺序建议）。</p>
     <p><b>开源</b>：MIT License。</p>
@@ -105,21 +109,27 @@
 <div id="map"></div>
 <div id="measure-status"></div>
 
-<div id="legend">
-  <b>图例与状态</b><br/>
-  <span style="color:#e53935">▨</span> 斜面崩壊（喜多，<span id="st-sanpuku">加载中…</span>）<br/>
-  <span style="color:#8d6e63">▨</span> 土砂堆积（喜多，<span id="st-taiseki">加载中…</span>）<br/>
-  <span style="color:#ff9800">▨</span> 崩壊・堆積分布図（国土地理院）<br/>
+<details id="legend" open>
+  <summary>图例与状态（点击折叠）</summary>
+  <div style="margin-top:6px">
+  <span style="color:#e53935">▨</span> 崩塌（喜多判读，<span id="st-sanpuku">加载中…</span>）<br/>
+  <span style="color:#8d6e63">▨</span> 堆积体（喜多判读，<span id="st-taiseki">加载中…</span>）<br/>
+  <span style="color:#ff9800">▨</span> 崩塌与堆积分布（国土地理院）<br/>
   <span style="color:#a5e1ff">—</span> PGA 等值线（%g）　<span style="color:#90f2ff">—</span> MMI 等值线<br/>
-  ○ 余震 M≥3.5　<span style="font-size:15px;color:#d32f2f">★</span> 震中　● 主要地点<br/>
-  <hr style="border:none;border-top:1px solid #ccc;margin:6px 0"/>
-  <span style="color:#42a5f5">▨</span> 雨量等值线（9/3–9/5 累计 mm，站点插值示意）<br/>
-  <span style="color:#1e88e5">●</span> アメダス雨量站（気象庁）<br/>
-  <span style="background:#ff6ec7;color:#ff6ec7">▨</span> 第四纪火山喷发物高亮（产総研地质图）<br/>
-  <span style="background:#d9b38c;color:#d9b38c">▨</span> 无缝地质图 V2（产総研 1:20万）
-</div>
+  ○ 余震 M≥3.5　<span style="font-size:14px;color:#d32f2f">★</span> 震中　● 主要地点<br/>
+  <hr style="border:none;border-top:1px solid #e0e0e0;margin:5px 0"/>
+  <span style="color:#42a5f5">▨</span> 雨量等值线（9/3–9/5 累计 mm，示意）<br/>
+  <span style="color:#1e88e5">●</span> 气象厅雨量站（アメダス）<br/>
+  <span style="background:#ff6ec7;color:#ff6ec7">▨</span> 第四纪火山喷发物高亮（産総研）<br/>
+  <span style="background:#d9b38c;color:#d9b38c">▨</span> 无缝地质图 V2（産総研 1:20万）<br/>
+  <hr style="border:none;border-top:1px solid #e0e0e0;margin:5px 0"/>
+  <span style="color:#2e7d32">▨</span> 植生・土地利用（OSM-FR）｜<b>无关要素</b><br/>
+  <span style="color:#0288d1">▨</span> 水系（河川・水域）｜背景要素　🌋 活火山｜<b>相关要素</b>
+  </div>
+</details>
 
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet.vectorgrid@1.3.0/dist/Leaflet.VectorGrid.bundled.js"></script>
 <script>
 /* ================= 基础地图 ================= */
 var CENTER = [42.72, 141.80];
@@ -133,9 +143,9 @@ var ortho0911 = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/20180906hokkai
 gsiStd.addTo(map);
 
 var baseMaps = {
-  '标准地图（地理院）': gsiStd,
-  '淡色地图（地理院）': gsiPale,
-  '赤色立体地図（厚真町）': sekishoku,
+  '标准地图（国土地理院）': gsiStd,
+  '淡色地图（国土地理院）': gsiPale,
+  '赤色立体地图（厚真町）': sekishoku,
   '震后正射影像 9/6（厚真）': ortho0906,
   '震后正射影像 9/11（安平）': ortho0911
 };
@@ -338,8 +348,51 @@ var volcHiLyr = new VolcHiLayer({
   attribution: '産総研无缝地质图V2：第四纪火山喷发物高亮'
 });
 
+/* ================= 背景/辨析图层：植被・水系・活火山 ================= */
+var BV_URL = 'https://cyberjapandata.gsi.go.jp/xyz/experimental_bvmap/{z}/{x}/{y}.pbf';
+var BV_OPT = { maxZoom: 18, maxNativeZoom: 13, interactive: false, attribution: '国土地理院（ベクトルタイル提供実験）' };
+
+/* 植被・土地利用（OSM-FR 渲染）——与本次滑坡无直接关系的地理要素（教学辨析用）
+   说明：国土地理院矢量瓦片的高缩放级在胆振地区暂无陆地要素覆盖，
+   植被改用 OSM-FR 栅格渲染（半透明叠加，绿色为森林/植被，黄绿色为农田，蓝色为水系） */
+var vegeLyr = L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+  subdomains: 'abc', opacity: 0.5, maxZoom: 18, zIndex: 3,
+  attribution: '© OpenStreetMap contributors, tiles OSM-FR'
+});
+
+/* 水系（河川・水域）——背景要素：河谷控制堆积范围，但不触发滑坡 */
+var waterLyr;
+try {
+  if (!L.vectorGrid) throw new Error('vectorgrid lib missing');
+  waterLyr = L.vectorGrid.protobuf(BV_URL, L.extend({}, BV_OPT, {
+    vectorTileLayerStyles: {
+      waterarea: function () { return { fillColor: '#4fc3f7', fillOpacity: 0.3, color: '#0288d1', weight: 0.3, fill: true }; },
+      waterline: function () { return { color: '#0288d1', weight: 0.9, opacity: 0.7 }; }
+    }
+  }));
+} catch (err) {
+  /* CDN 加载失败时降级为空图层，不影响主功能 */
+  waterLyr = L.layerGroup();
+  console.warn('水系图层加载失败：', err.message);
+}
+
+/* 活火山（気象庁常时观测火山）——火山灰的来源，与滑坡高度相关 */
+function volcMarker(lat, lon, name, note) {
+  return L.marker([lat, lon], {
+    icon: L.divIcon({ html: '<div style="font-size:17px;filter:drop-shadow(0 0 2px #fff)">🌋</div>', iconSize: [22, 22], iconAnchor: [11, 11] })
+  }).bindPopup('<b>' + name + '</b><br/>' + note + '<br/><span style="color:#888;font-size:12px">気象庁常时观测火山</span>');
+}
+var volcLyr = L.layerGroup([
+  volcMarker(42.688, 141.377, '樽前山', '<b>Ta-b（1667）/ Ta-c / Ta-d（约9000年前）浮石层的来源</b>——本次滑坡滑动面所在层！'),
+  volcMarker(42.794, 141.286, '惠庭岳', '<b>En-a（约2万年前）浮石层的来源</b>——北部崩坏区的主要滑动层位'),
+  volcMarker(42.544, 140.838, '有珠山', '区域活火山，洞爷湖破火山口周边火山灰来源之一'),
+  volcMarker(42.827, 140.811, '羊蹄山', '区域成层火山，二世古周边火山灰来源'),
+  volcMarker(42.063, 140.677, '北海道駒ヶ岳', '渡岛半岛南部活火山，函馆周边火山灰来源')
+]);
+
 /* ================= 震中与标注点 ================= */
 var epicenter = L.marker([42.686, 141.929], {
+
   icon: L.divIcon({ html: '<div style="font-size:22px;color:#d32f2f;text-shadow:0 0 3px #fff">★</div>', iconSize: [26, 26], iconAnchor: [13, 13] })
 }).bindPopup('<b>震中（USGS）</b><br/>Mw 6.6　深度约 35 km<br/>2018-09-06 03:07（日本时间）');
 
@@ -358,17 +411,21 @@ var poi = L.layerGroup([
 epicenter.addTo(map);
 
 var overlayMaps = {
-  '国土地理院：崩壊・堆積分布図': hokaichi,
-  '斜面崩壊 6116 处（GitHub）': sanpukuLyr,
-  '土砂堆积 1512 处（GitHub）': taisekiLyr,
+  '崩塌与堆积分布（国土地理院）': hokaichi,
+  '崩塌 6116 处（喜多判读）': sanpukuLyr,
+  '堆积体 1512 处（喜多判读）': taisekiLyr,
   'PGA 等值线（USGS）': pgaLyr,
   'MMI 等值线（USGS）': mmiLyr,
   '余震 M≥3.5（USGS）': afLyr,
   '9/3–9/5 累计雨量等值线（示意）': rainIsoLyr,
-  'アメダス雨量站（気象庁）': rainStLyr,
+  '气象厅雨量站（アメダス）': rainStLyr,
   '无缝地质图 V2（産総研）': aistGeo,
   '第四纪火山喷发物高亮': volcHiLyr,
-  '震中与主要地点': L.layerGroup([epicenter, poi])
+  '震中与主要地点': L.layerGroup([epicenter, poi]),
+  '─ 辨析：相关 / 无关要素 ──': L.layerGroup(),
+  '植生・土地利用（OSM-FR）｜滑坡无关要素': vegeLyr,
+  '水系（河川・水域）｜背景要素': waterLyr,
+  '活火山（火山灰来源）｜相关要素': volcLyr
 };
 L.control.layers(baseMaps, overlayMaps, { position: 'topright', collapsed: true }).addTo(map);
 
